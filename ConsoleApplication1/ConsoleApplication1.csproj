@@ -44,7 +44,13 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utils\SortedListDictionary.cs" />
+    <Compile Include="YamlElement\Document.cs" />
+    <Compile Include="YamlElement\MappingNode.cs" />
+    <Compile Include="YamlElement\Parser.cs" />
+    <Compile Include="YamlElement\RootNode.cs" />
     <Compile Include="YamlElement\ScalarNode.cs" />
+    <Compile Include="YamlElement\SequenceNode.cs" />
     <Compile Include="YamlElement\YamlNode.cs" />
     <Compile Include="YAMLParser.cs" />
   </ItemGroup>
