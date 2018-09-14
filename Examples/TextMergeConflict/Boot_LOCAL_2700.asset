@@ -1,0 +1,68 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc61178c313ff474bab291a8eca03ce5, type: 3}
+  m_Name: Boot
+  m_EditorClassIdentifier: 
+  m_cultureCode:
+    m_value: 1036
+  m_dataDictionary:
+    m_keys: b8260000450b0100216a0000699900000dc50000eafc00007e240000be5c0100eb7a00004c680000e0330100e85b00002a5d0100a9420100a17a0100774d00009b720000305200000552000014a6000056bb0000a34600003c65010013dc00003b6300005a8f0000b1c60000d13600002b4f0000d67500007be800001cb3000025870000cbc70000fd2101006c490100f54b00005dc6000097750100660b0100bf730100181200001b2800007a6a0100
+    m_values:
+    - Oui
+    - Non
+    - OK
+    - Retour
+    - Continuer
+    - Continuer
+    - Compte banni
+    - "Compte bloqu\xE9"
+    - "Compte refus\xE9"
+    - "Acc\xE9s B\xE9ta ferm\xE9 requis"
+    - Login invalide
+    - "Compte d\xE9ja conn\xE9ct\xE9"
+    - Erreur serveur
+    - "Adresse Ip refus\xE9e"
+    - "Message non autoris\xE9"
+    - Droits administrateur requis
+    - Abonnement requis
+    - Shield
+    - "Temps d'attente \xE9coul\xE9"
+    - Erreur d'authentification
+    - "Vous avez \xE9t\xE9 exclus par le serveur"
+    - "Ce compte est d\xE9j\xE0 connect\xE9"
+    - "Vous avez \xE9t\xE9 d\xE9conn\xE9ct\xE9 pour inactivit\xE9"
+    - Erreur de version
+    - "Un autre joueur s'est connect\xE9 avec le m\xEAme compte"
+    - Erreur inconnue
+    - "Version non support\xE9e"
+    - "Version non support\xE9e"
+    - Erreur de connexion
+    - En cours de reconnexion...
+    - "Se d\xE9connecter"
+    - "Bienvenue, invit\xE9"
+    - "\xCAtes-vous un nouveau joueur ?"
+    - Oui, jouer sans compte
+    - "J'ai d\xE9j\xE0 un compte"
+    - Jouer avec un compte Ankama
+    - Jouer
+    - Jouer sans compte
+    - "Votre pseudo doit \xEAtre diff\xE9rent de votre nom de compte, il est visible
+      des autres joueurs en jeu, dans le chat et sur les forums.\n\nVotre pseudo doit
+      \xEAtre compos\xE9 de 3 \xE0 29 caract\xE8res (a-z, A-Z, -), et doit \xEAtre
+      respectueux.\n\nUne fois choisi, votre pseudo ne pourra plus \xEAtre modifi\xE9."
+    - Pseudo
+    - Choisissez votre pseudo
+    - Se connecter
+    - Nom de compte
+    - Mot de passe
+  m_versionDictionary:
+    m_keys: b8260000450b0100216a0000699900000dc50000eafc00007e240000be5c0100eb7a00004c680000e0330100e85b00002a5d0100a9420100a17a0100774d00009b720000305200000552000014a6000056bb0000a34600003c65010013dc00003b6300005a8f0000b1c60000d13600002b4f0000d67500007be800001cb3000025870000cbc70000fd2101006c490100f54b00005dc6000097750100660b0100bf730100181200001b2800007a6a0100
+    m_values: 0100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000

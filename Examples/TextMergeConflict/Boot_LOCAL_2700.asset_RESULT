@@ -1,0 +1,84 @@
+﻿%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc61178c313ff474bab291a8eca03ce5, type: 3}
+  m_Name: Boot
+  m_EditorClassIdentifier: ''
+  m_cultureCode:
+    m_value: 1036
+  m_dataDictionary:
+    m_keys: b8260000450b0100216a0000699900000dc50000eafc00007e240000be5c0100eb7a00004c680000e0330100e85b00002a5d0100a9420100a17a0100774d00009b720000305200000552000014a6000056bb0000a34600003c65010013dc00003b6300005a8f0000b1c60000d1360000266900002b4f0000d67500007be800001cb3000025870000cbc70000fd2101006c490100f54b00005dc6000097750100660b0100bf730100181200001b2800007a6a0100
+    m_values:
+    - Oui
+    - Non
+    - OK
+    - Retour
+    - Continuer
+    - Continuer
+    - Compte banni
+    - Compte bloqué
+    - Compte refusé
+    - Accés Béta fermé requis
+    - Login invalide
+    - Compte déja connécté
+    - Erreur serveur
+    - Adresse Ip refusée
+    - Message non autorisé
+    - Droits administrateur requis
+    - Abonnement requis
+    - Shield
+    - Temps d'attente écoulé
+    - Erreur d'authentification
+    - Vous avez été exclus par le serveur
+    - Ce compte est déjà connecté
+    - Vous avez été déconnécté pour inactivité
+    - Erreur de version
+    - Un autre joueur s'est connecté avec le même compte
+    - Erreur inconnue
+    - Version non supportée
+    - Version non supportée
+    - Annuler
+    - Erreur de connexion
+    - En cours de reconnexion...
+    - Se déconnecter
+    - Bienvenue, invité
+    - Êtes-vous un nouveau joueur ?
+    - Oui, jouer sans compte
+    - J'ai déjà un compte
+    - Jouer avec un compte Ankama
+    - Jouer
+    - Jouer sans compte
+    - >-
+      Votre pseudo doit être différent de votre nom de compte, il est visible des autres joueurs en jeu, dans le chat et sur les forums.
+
+
+      Votre pseudo doit être composé de 3 à 29 caractères (a-z, A-Z, -), et doit être respectueux.
+
+
+      Une fois choisi, votre pseudo ne pourra plus être modifié.
+    - Pseudo
+    - Choisissez votre pseudo
+    - Se connecter
+    - Nom de compte
+    - Mot de passe
+  m_versionDictionary:
+    m_keys: b8260000450b0100216a0000699900000dc50000eafc00007e240000be5c0100eb7a00004c680000e0330100e85b00002a5d0100a9420100a17a0100774d00009b720000305200000552000014a6000056bb0000a34600003c65010013dc00003b6300005a8f0000b1c60000d1360000266900002b4f0000d67500007be800001cb3000025870000cbc70000fd2101006c490100f54b00005dc6000097750100660b0100bf730100181200001b2800007a6a0100
+    m_values: 010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000600000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+...
+<<<<<<< HEAD
+REMOVAL: 26918 => 
+REMOVAL: 26918 => 0
+
+=======
+MODIFICATION: 26918 => Annulere
+MODIFICATION: 26918 => 7
+
+>>>>>>> 
+
