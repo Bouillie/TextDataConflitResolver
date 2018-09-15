@@ -1,14 +1,10 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
-using System.Linq;
-using System.Net;
-using System.Security.Cryptography.X509Certificates;
 using System.Text;
+using ConsoleApplication1.SimpleParser;
 using ConsoleApplication1.Utils;
-using YamlDotNet.RepresentationModel;
 
 namespace ConsoleApplication1
 {
@@ -17,26 +13,26 @@ namespace ConsoleApplication1
     
     public class Data
     {
-        public SortedListDictionary<int, string> textKeyDictionary = new SortedListDictionary<int, string>();
+        public SortedListDictionary<int, Line> textKeyDictionary = new SortedListDictionary<int, Line>();
         public SortedListDictionary<int, int> versionDictionary = new SortedListDictionary<int, int>();
     }
 
     public class Modifications
     {
-        public Dictionary<int, Operation<int, string>> textKeyOperations = new Dictionary<int, Operation<int, string>>();
+        public Dictionary<int, Operation<int, Line>> textKeyOperations = new Dictionary<int, Operation<int, Line>>();
         public Dictionary<int, Operation<int, int>> versionOperations = new Dictionary<int, Operation<int, int>>();
     }
 
     public class ModificationResult
     {
-        public List<Operation<int, string>> textKeyOperations = new List<Operation<int, string>>();
+        public List<Operation<int, Line>> textKeyOperations = new List<Operation<int, Line>>();
         public List<Operation<int, int>> versionOperations = new List<Operation<int, int>>();
 
         public List<Tuple<Operation, Operation>> m_invalidOperations = new List<Tuple<Operation, Operation>>();
 
         public void Apply(Data data)
         {
-            foreach (Operation<int, string> operations in textKeyOperations)
+            foreach (Operation<int, Line> operations in textKeyOperations)
             {
                 switch (operations.OperationType)
                 {
@@ -77,10 +73,16 @@ namespace ConsoleApplication1
             StringBuilder a = new StringBuilder();
             StringBuilder b = new StringBuilder();
 
-            foreach (Tuple<Operation,Operation> pair in m_invalidOperations)
+            for (int index = 0; index < m_invalidOperations.Count; index++)
             {
-                a.AppendLine(pair.Item1.ToString());
-                b.AppendLine(pair.Item2.ToString());
+                if (index != 0)
+                {
+                    a.Append("\n");
+                    b.Append("\n");
+                }
+                Tuple<Operation, Operation> pair = m_invalidOperations[index];
+                a.Append(pair.Item1.ToString());
+                b.Append(pair.Item2.ToString());
             }
 
             StringBuilder result = new StringBuilder();
@@ -121,14 +123,12 @@ namespace ConsoleApplication1
         }
     }
   
-
-    
     public class YAMLParser
     {
 
         public bool Parse(string pathSource, string pathA, string pathB)
         {
-            YamlStream yamlSource;
+            Document yamlSource;
             Data sourceData;
             ModificationResult modificationResult;
             
@@ -141,17 +141,26 @@ namespace ConsoleApplication1
                         StreamReader streamReader = new StreamReader(fs, Encoding.UTF8);
                         StreamReader streamReaderA = new StreamReader(fsa, Encoding.UTF8);
                         StreamReader streamReaderB = new StreamReader(fsb, Encoding.UTF8);
-                        
-                        yamlSource = new YamlStream();
-                        yamlSource.Load(streamReader);
-                        sourceData = Parse(yamlSource);
 
-                        YamlStream yamlSourceA = new YamlStream();
-                        yamlSourceA.Load(streamReaderA);
-                        Data aData = Parse(yamlSourceA);
-                        YamlStream yamlSourceB = new YamlStream();
-                        yamlSourceB.Load(streamReaderB);
-                        Data bData = Parse(yamlSourceB);
+                        string[] textNames = {
+                            "m_textKeyDictionary",
+                            "m_dataDictionary",
+                        };
+                        string[] versionsNames = {
+                            "m_versionDictionary",
+                            "m_textVersionDictionary",
+                        };
+
+                        yamlSource = new Document(textNames, versionsNames);
+                        yamlSource.Parse(streamReader);
+                        sourceData = ParseDocument(yamlSource);
+
+                        Document yamlSourceA = new Document(textNames, versionsNames);
+                        yamlSourceA.Parse(streamReaderA);
+                        Data aData = ParseDocument(yamlSourceA);
+                        Document yamlSourceB = new Document(textNames, versionsNames);
+                        yamlSourceB.Parse(streamReaderB);
+                        Data bData = ParseDocument(yamlSourceB);
             
                         Modifications aModifications = GenerateDiffs(sourceData, aData);
                         Modifications bModifications = GenerateDiffs(sourceData, bData);
@@ -159,22 +168,19 @@ namespace ConsoleApplication1
                         modificationResult = ComputeResults(aModifications, bModifications);
                         modificationResult.Apply(sourceData);
                         
-                        WriteDocument(yamlSource.Documents[0], sourceData);
+                        WriteDocument(yamlSource, sourceData);
                     }
                 }
             }
             
-//            File.Delete(pathA);
+            File.Delete(pathA);
             
-            using (FileStream fs2 = File.Open(pathA + "_RESULT", FileMode.OpenOrCreate, FileAccess.Write,
+            using (FileStream fs2 = File.Open(pathA, FileMode.OpenOrCreate, FileAccess.Write,
                 FileShare.None))
             {
                 bool success = true;
                 StreamWriter output = new StreamWriter(fs2, Encoding.UTF8);
-                output.WriteLine("%YAML 1.1");
-                output.WriteLine("%TAG !u! tag:unity3d.com,2011:");
-                output.Write("--- !u!114 ");
-                yamlSource.Save(output, false);
+                yamlSource.Save(output);
                 string errors = modificationResult.Errors();
                 if (!string.IsNullOrWhiteSpace(errors))
                 {
@@ -191,9 +197,9 @@ namespace ConsoleApplication1
         public ModificationResult ComputeResults(Modifications a, Modifications b)
         {
             ModificationResult result = new ModificationResult();
-            foreach (KeyValuePair<int,Operation<int,string>> operation in a.textKeyOperations)
+            foreach (KeyValuePair<int,Operation<int,Line>> operation in a.textKeyOperations)
             {
-                if (b.textKeyOperations.TryGetValue(operation.Key, out Operation<int, string> op2))
+                if (b.textKeyOperations.TryGetValue(operation.Key, out Operation<int, Line> op2))
                 {
                     result.m_invalidOperations.Add(new Tuple<Operation, Operation>(operation.Value, op2));
                 }
@@ -213,9 +219,9 @@ namespace ConsoleApplication1
                     result.versionOperations.Add(operation.Value);
                 }
             }
-            foreach (KeyValuePair<int,Operation<int,string>> operation in b.textKeyOperations)
+            foreach (KeyValuePair<int,Operation<int,Line>> operation in b.textKeyOperations)
             {
-                if (!a.textKeyOperations.TryGetValue(operation.Key, out Operation<int, string> op2))
+                if (!a.textKeyOperations.TryGetValue(operation.Key, out Operation<int, Line> op2))
                 {
                     result.textKeyOperations.Add(operation.Value);
                 }
@@ -234,25 +240,25 @@ namespace ConsoleApplication1
         public Modifications GenerateDiffs(Data source, Data modif)
         {
             Modifications modifications = new Modifications();
-            foreach (KeyValuePair<int,string> pair in source.textKeyDictionary)
+            foreach (KeyValuePair<int,Line> pair in source.textKeyDictionary)
             {
-                if (modif.textKeyDictionary.TryGetValue(pair.Key, out string value))
+                if (modif.textKeyDictionary.TryGetValue(pair.Key, out Line value))
                 {
-                    if (!string.Equals(value, pair.Value))
+                    if (!string.Equals(value.ScalarValue, pair.Value.ScalarValue))
                     {
-                        modifications.textKeyOperations.Add(pair.Key, new Operation<int, string>(pair.Key, value, OperationType.MODIFICATION));
+                        modifications.textKeyOperations.Add(pair.Key, new Operation<int, Line>(pair.Key, value, OperationType.MODIFICATION));
                     }
                 }
                 else
                 {
-                    modifications.textKeyOperations.Add(pair.Key, new Operation<int, string>(pair.Key, null, OperationType.REMOVAL));
+                    modifications.textKeyOperations.Add(pair.Key, new Operation<int, Line>(pair.Key, null, OperationType.REMOVAL));
                 }
             }
-            foreach (KeyValuePair<int,string> pair in modif.textKeyDictionary)
+            foreach (KeyValuePair<int,Line> pair in modif.textKeyDictionary)
             {
                 if (!source.textKeyDictionary.Contains(pair.Key))
                 {
-                    modifications.textKeyOperations.Add(pair.Key, new Operation<int, string>(pair.Key, pair.Value, OperationType.ADDITION));
+                    modifications.textKeyOperations.Add(pair.Key, new Operation<int, Line>(pair.Key, pair.Value, OperationType.ADDITION));
                 }
             }
             foreach (KeyValuePair<int,int> pair in source.versionDictionary)
@@ -280,74 +286,26 @@ namespace ConsoleApplication1
             return modifications;
         }
         
-        public Data Parse(YamlStream yaml)
-        {
-            return ParseDocument(yaml.Documents[0]);
-        }
-
-        private YamlMappingNode GetTextKeysNode(YamlMappingNode parent, params string[] keys)
-        {
-            if (parent.Children.TryGetValue(new YamlScalarNode("m_textKeyDictionary"), out YamlNode node))
-            {
-                return (YamlMappingNode) node;
-            }
-            
-            if (parent.Children.TryGetValue(new YamlScalarNode("m_dataDictionary"), out YamlNode node2))
-            {
-                return (YamlMappingNode) node2;
-            }
-
-            return null;
-        }    
         
-        private YamlMappingNode GetVersionNode(YamlMappingNode parent)
+        private void WriteDocument(Document document, Data data)
         {
-            if (parent.Children.TryGetValue(new YamlScalarNode("m_versionDictionary"), out YamlNode node))
-            {
-                return (YamlMappingNode) node;
-            }
-            
-            if (parent.Children.TryGetValue(new YamlScalarNode("m_textVersionDictionary"), out YamlNode node2))
-            {
-                return (YamlMappingNode) node2;
-            }
-
-            return null;
+            WriteTextKeyDictionary(document, data);
+            WriteVersionDictionary(document, data);
         }
         
-        private void WriteDocument(YamlDocument document, Data data)
+        private Data ParseDocument(Document document)
         {
-            YamlMappingNode mapping = (YamlMappingNode) document.RootNode;
-            YamlMappingNode monoBehaviourNode = (YamlMappingNode) mapping.Children[new YamlScalarNode("MonoBehaviour")];
-            YamlMappingNode textKeyDictionary = GetTextKeysNode(monoBehaviourNode);
-            YamlMappingNode versionDictionary = GetVersionNode(monoBehaviourNode);
-            WriteTextKeyDictionary(textKeyDictionary, data);
-            WriteVersionDictionary(versionDictionary, data);
-        }
-        
-        private Data ParseDocument(YamlDocument document)
-        {
-            YamlMappingNode mapping = (YamlMappingNode) document.RootNode;
             Data data = new Data();
-
-            YamlMappingNode monoBehaviourNode = (YamlMappingNode) mapping.Children[new YamlScalarNode("MonoBehaviour")];
-            YamlMappingNode textKeyDictionary = GetTextKeysNode(monoBehaviourNode);
-            ParseTextKeyDictionary(textKeyDictionary, data);
-            YamlMappingNode versionDictionary = GetVersionNode(monoBehaviourNode);
-            ParseVersionDictionary(versionDictionary, data);
+            ParseTextKeyDictionary(document, data);
+            ParseVersionDictionary(document, data);
 
             return data;
         }
 
-        private void ParseVersionDictionary(YamlMappingNode mapping, Data data)
+        private void ParseVersionDictionary(Document document, Data data)
         {
-            YamlScalarNode keysNode = (YamlScalarNode) mapping.Children[new YamlScalarNode("m_keys")];
-            string keysValue = keysNode.Value;
-            int[] keys = ParseSerializedIntArray(keysValue);
-            
-            YamlScalarNode valuesNode = (YamlScalarNode) mapping.Children[new YamlScalarNode("m_values")];
-            string valuesValue = valuesNode.Value;
-            int[] values = ParseSerializedIntArray(valuesValue);
+            int[] keys = ParseSerializedIntArray(document.VersionDictionaryKeys);
+            int[] values = ParseSerializedIntArray(document.VersionDictionaryValues);
             
             for (int i = 0, count = keys.Length; i < count; ++i) 
             {
@@ -355,7 +313,7 @@ namespace ConsoleApplication1
             }
         }
         
-        private void WriteVersionDictionary(YamlMappingNode mapping, Data data)
+        private void WriteVersionDictionary(Document document, Data data)
         {
             StringBuilder keysBuilder = new StringBuilder();
             StringBuilder valuesBuilder = new StringBuilder();
@@ -365,40 +323,34 @@ namespace ConsoleApplication1
                 keysBuilder.Append(ReverseHexString(pair.Key.ToString("x8")));
                 valuesBuilder.Append(ReverseHexString(pair.Value.ToString("x8")));
             }
-            
-            mapping.Children[new YamlScalarNode("m_keys")] = new YamlScalarNode(keysBuilder.ToString());
-            string value = valuesBuilder.ToString();
-            mapping.Children[new YamlScalarNode("m_values")] = new YamlScalarNode(value);
+
+            document.VersionDictionaryKeys = keysBuilder.ToString();
+            document.VersionDictionaryValues = valuesBuilder.ToString();
         }
         
-        private void ParseTextKeyDictionary(YamlMappingNode mapping, Data data)
+        private void ParseTextKeyDictionary(Document document, Data data)
         {
-            YamlScalarNode keysNode = (YamlScalarNode) mapping.Children[new YamlScalarNode("m_keys")];
-            string keysValue = keysNode.Value;
-            int[] keys = ParseSerializedIntArray(keysValue);
-            
-            YamlSequenceNode values = (YamlSequenceNode) mapping.Children[new YamlScalarNode("m_values")];
+            int[] keys = ParseSerializedIntArray(document.TextDictionaryKeys);
             int index = 0;
-            foreach (YamlScalarNode value in values)
+            foreach (Line value in document.TextDictionaryValues)
             {
-                data.textKeyDictionary.Add(keys[index++], value.Value);
+                data.textKeyDictionary.Add(keys[index++], value);
             }
         }
         
-        private void WriteTextKeyDictionary(YamlMappingNode mapping, Data data)
+        private void WriteTextKeyDictionary(Document document, Data data)
         {
-            YamlSequenceNode valuesSequence = new YamlSequenceNode();
-            
+            List<Line> lines = new List<Line>();
             StringBuilder keysBuilder = new StringBuilder();
 
-            foreach (KeyValuePair<int, string> pair in data.textKeyDictionary)
+            foreach (KeyValuePair<int, Line> pair in data.textKeyDictionary)
             {
                 keysBuilder.Append(ReverseHexString(pair.Key.ToString("x8")));
-                valuesSequence.Add(new YamlScalarNode(pair.Value));
+                lines.Add(pair.Value);
             }
-            
-            mapping.Children[new YamlScalarNode("m_keys")] = new YamlScalarNode(keysBuilder.ToString());
-            mapping.Children[new YamlScalarNode("m_values")] = valuesSequence;
+
+            document.TextDictionaryKeys = keysBuilder.ToString();
+            document.TextDictionaryValues = lines;
         }
 
         private static int[] ParseSerializedIntArray(string serializedIntArray)
