@@ -18,11 +18,7 @@ namespace ConsoleApplication1
             string path = args[0];
             string pathA = args[1];
             string pathB = args[2];
-            string backupPath = pathA + ".BACKUP";
 
-            // Backup
-            File.Copy(pathA, backupPath, true);
-            
             YAMLParser yamlParser = new YAMLParser();
             bool success = yamlParser.Parse(path, pathA, pathB);
 

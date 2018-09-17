@@ -81,8 +81,8 @@ namespace ConsoleApplication1
                     b.Append("\n");
                 }
                 Tuple<Operation, Operation> pair = m_invalidOperations[index];
-                a.Append(pair.Item1.ToString());
-                b.Append(pair.Item2.ToString());
+                a.Append(pair.Item1);
+                b.Append(pair.Item2);
             }
 
             StringBuilder result = new StringBuilder();
