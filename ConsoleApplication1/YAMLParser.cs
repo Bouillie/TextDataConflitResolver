@@ -179,7 +179,7 @@ namespace ConsoleApplication1
                 FileShare.None))
             {
                 bool success = true;
-                StreamWriter output = new StreamWriter(fs2, new UTF8Encoding(false));
+                StreamWriter output = new StreamWriter(fs2, new UTF8Encoding(false)) { NewLine = "\n" };
                 yamlSource.Save(output);
                 string errors = modificationResult.Errors();
                 if (!string.IsNullOrWhiteSpace(errors))
