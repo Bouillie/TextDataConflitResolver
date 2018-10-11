@@ -3,13 +3,11 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Text;
-using ConsoleApplication1.SimpleParser;
-using ConsoleApplication1.Utils;
+using TextDataConflictResolver.SimpleParser;
+using TextDataConflictResolver.Utils;
 
-namespace ConsoleApplication1
+namespace TextDataConflictResolver
 {
-
-    
     
     public class Data
     {
@@ -126,11 +124,28 @@ namespace ConsoleApplication1
     public class YAMLParser
     {
 
-        public bool Parse(string pathSource, string pathA, string pathB)
+        public bool Parse(string pathSource, string pathA, string pathB, string backupDirectory)
         {
             Document yamlSource;
             Data sourceData;
             ModificationResult modificationResult;
+
+            if (backupDirectory != null)
+            {
+                if (!Directory.Exists(backupDirectory))
+                {
+                    Directory.CreateDirectory(backupDirectory);
+                }
+
+                string now = DateTime.Now.ToString("s").Replace(':', '-');
+                string pathABackup = Path.Combine(backupDirectory, $"{now}-{Path.GetFileName(pathA)}");
+                string pathBBackup = Path.Combine(backupDirectory, $"{now}-{Path.GetFileName(pathB)}");
+                string pathSourceBackup = Path.Combine(backupDirectory, $"{now}-{Path.GetFileName(pathSource)}");
+                
+                File.Copy(pathA, pathABackup);
+                File.Copy(pathB, pathBBackup);
+                File.Copy(pathSource, pathSourceBackup);
+            }
             
             using (FileStream fs = File.Open(pathSource, FileMode.Open, FileAccess.Read, FileShare.Read))
             {

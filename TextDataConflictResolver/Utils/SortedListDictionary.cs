@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-namespace ConsoleApplication1.Utils
+namespace TextDataConflictResolver.Utils
 {
 
     public class SortedListDictionary<TKey, TValue> : IEnumerable<KeyValuePair<TKey, TValue>>

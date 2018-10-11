@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 
-namespace ConsoleApplication1.SimpleParser
+namespace TextDataConflictResolver.SimpleParser
 {
     public class Line
     {

@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApplication1", "ConsoleApplication1\ConsoleApplication1.csproj", "{267822EE-64FC-49DA-AAA4-2428B865C0A6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TextDataConflictResolver", "TextDataConflictResolver\TextDataConflictResolver.csproj", "{267822EE-64FC-49DA-AAA4-2428B865C0A6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

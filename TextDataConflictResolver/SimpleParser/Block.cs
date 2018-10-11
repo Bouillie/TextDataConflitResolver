@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.IO;
 
-namespace ConsoleApplication1.SimpleParser
+namespace TextDataConflictResolver.SimpleParser
 {
     public class Block
     {
