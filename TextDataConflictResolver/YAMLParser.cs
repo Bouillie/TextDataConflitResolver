@@ -124,23 +124,22 @@ namespace TextDataConflictResolver
     public class YAMLParser
     {
 
-        public bool Parse(string pathSource, string pathA, string pathB, string backupDirectory)
+        public bool Parse(string pathSource, string pathA, string pathB, string destinationPath)
         {
             Document yamlSource;
             Data sourceData;
             ModificationResult modificationResult;
 
-            if (backupDirectory != null)
+            if (destinationPath != null)
             {
-                if (!Directory.Exists(backupDirectory))
-                {
-                    Directory.CreateDirectory(backupDirectory);
-                }
-
+                string fileName = Path.GetFileNameWithoutExtension(destinationPath);
+                string directoryName = Path.GetDirectoryName(destinationPath) ?? "";
+                string extension = Path.GetExtension(destinationPath);
+                
                 string now = DateTime.Now.ToString("s").Replace(':', '-');
-                string pathABackup = Path.Combine(backupDirectory, $"{now}-{Path.GetFileName(pathA)}");
-                string pathBBackup = Path.Combine(backupDirectory, $"{now}-{Path.GetFileName(pathB)}");
-                string pathSourceBackup = Path.Combine(backupDirectory, $"{now}-{Path.GetFileName(pathSource)}");
+                string pathABackup = Path.Combine(directoryName,  $"{fileName}_LOCAL_{now}{extension}");
+                string pathBBackup = Path.Combine(directoryName,  $"{fileName}_REMOTE_{now}{extension}");
+                string pathSourceBackup = Path.Combine(directoryName,  $"{fileName}_BASE_{now}{extension}");
                 
                 File.Copy(pathA, pathABackup);
                 File.Copy(pathB, pathBBackup);

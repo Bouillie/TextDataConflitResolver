@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using CommandLine;
 
 namespace TextDataConflictResolver
@@ -11,20 +12,26 @@ namespace TextDataConflictResolver
         public string Local { get; set; }
         [Value(2, MetaName = "Remote", Required = true, HelpText = "Remote file path.")]
         public string Remote { get; set; }
-        
-        [Option('b', "backupDirectory", HelpText = "Enable file backups.")]
-        public string BackupDirectory { get; set; }
+        [Value(3, MetaName = "DestinationPath", Required = false, HelpText = "Destination path.")]
+        public string DestinationPath { get; set; }
     }
     
     internal class Program
     {
         public static int Main(string[] args)
         {
+            string currentDirectory = Directory.GetCurrentDirectory();
+            Console.WriteLine(currentDirectory);
+
             int result = Parser.Default.ParseArguments<Options>(args).MapResult(
                 o =>
                 {
                     YAMLParser yamlParser = new YAMLParser();
-                    bool success = yamlParser.Parse(o.Base, o.Local, o.Remote, o.BackupDirectory);
+                    string destinationPath = o.DestinationPath == null
+                        ? null
+                        : currentDirectory + Path.DirectorySeparatorChar + o.DestinationPath;
+                    
+                        bool success = yamlParser.Parse(o.Base, o.Local, o.Remote, destinationPath);
 
                     if (success)
                         Console.WriteLine("Merge successful.");
