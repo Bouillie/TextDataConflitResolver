@@ -122,6 +122,8 @@ namespace TextDataConflictResolver.SimpleParser
             Block currentBlock = m_blockChain = new Block();
             State state = State.ParsingRaw;
             string line = reader.ReadLine();
+            char currentEscapeChar = (char) 0;
+            bool isInEscape = false;
             int dictionaryDepth = 0;
             while (line != null)
             {
@@ -159,17 +161,20 @@ namespace TextDataConflictResolver.SimpleParser
                 }
                 else if (state == State.ParsingTextValues)
                 {
-                    if (depth <= dictionaryDepth)
+                    if (depth <= dictionaryDepth && !isInEscape)
                     {
                         state = State.ParsingRaw;
                         currentBlock = NewBlock(currentBlock);
                     }
                     else
                     {
-                        if (line.TrimStart(' ').StartsWith("-"))
+                        if (line.TrimStart(' ').StartsWith("-") && !isInEscape)
                         {
+                            int dataDepth = depth+2;
+                            currentEscapeChar = line.Length > dataDepth ? line[dataDepth] : (char) 0;
+                            isInEscape = currentEscapeChar == '\'' || currentEscapeChar == '"';
                             Line l = new Line(line);
-                            l.SetScalarDepth(depth+2);
+                            l.SetScalarDepth(dataDepth);
                             currentBlock.Lines.Add(l);
                         }
                         else
@@ -177,6 +182,12 @@ namespace TextDataConflictResolver.SimpleParser
                             List<Line> lines = currentBlock.Lines;
                             Line l = lines[lines.Count - 1];
                             l.AppendValue(line);
+                        }
+                        
+                        if (isInEscape && line.EndsWith(currentEscapeChar.ToString()))
+                        {
+                            currentEscapeChar = (char) 0;
+                            isInEscape = false;
                         }
                         line = reader.ReadLine();
                     }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
@@ -44,7 +45,8 @@ namespace TextDataConflictResolver.SimpleParser
                     if (index != 0)
                         sb.Append(" ");
                     string s = m_rawStrings[index];
-                    sb.Append(s.Substring(m_depth, s.Length - m_depth));
+                    int startIndex = Math.Max(0, Math.Min(s.Length - 1, m_depth));
+                    sb.Append(s.Substring(startIndex, s.Length - startIndex));
                 }
                 return sb.ToString();
             }
