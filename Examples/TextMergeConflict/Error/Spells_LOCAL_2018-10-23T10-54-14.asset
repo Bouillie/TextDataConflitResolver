@@ -1,0 +1,1073 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc61178c313ff474bab291a8eca03ce5, type: 3}
+  m_Name: Spells
+  m_EditorClassIdentifier: 
+  m_cultureCode:
+    m_value: 1036
+  m_dataDictionary:
+    m_keys: fc530000a334000069120000606700007c040000e644010096b8000096750100d5bb00006b8201007c670000cc2e00007ac10000f2550100d96d01007bc20000ae680000417e0100d51c0000a07a010006c10000323200003c8401000d0501001f8e0000d0760100b75b0100142c00004f0f00004146000022360100352501007e920000b065010030790000514d0000a13300001e750100b2c20000e53800008313000070160100dccd000009190100ab080100477a010006d3000036060100c0f8000064460100ff9c000091f10000b06e0100f3190000cc1101008f4100007582010087da0000145a0100ef3b01008cfa0000115f0000d5ff0000f2780100c17b0000e34b000093310100b9c70000390e0000810e000089e4000007270100151d0000353900007ee20000f4f400003fd90000d6400000a76a010021630000cfac0000193401000abd0000bbef00005b15000099bf0000de710000dab600003cf400001d3601007c3701006a1400008c890000d20f01003c15000096d9000096f70000c6b90000db070100ccd4000073610000ce4d000018720100b46e01003de90000e6da00001f820000bfa30000215f0100c95c01002528010062440000bf8401008974010022b300005d3e0000a29e0000d7e1000091fc00007e810000122b00005f990000c9cf0000096901006e7d0100003d000052cf00003e4e000008c60000805401005354010062cd0000c7a50000d8470100745f0100dade00006229000062810100f078000037e2000093420100c8c700008b220100580e010008ac000062020000d78f0000558c0000c1240100fc730000c3790000e4e90000b80701001e620000db840000f767000027070000c4460000bd9d0000bb35010012840100f27c00002a7d0000b4e4000004fb00001b83000016640000fd030100468301004f8b0000c9f00000e5820000e47f00006b130000315b000044120000283d00003b830000b237010033380000ef91000049770100df130100e4c70000807101004a9d0000847d0000792b0000b98e00008a120000b2ac0000cf210100db0500009d6e010087170100930201005b580100f1f2000072910000e14301006e79000027d700009c710000e2160100056f0000ce020000f6020100987e0100875a0100391f0100212f0100bb09000081d20000a179010059b100008633000095640100838b0000e1250000e67a0000d2f1000008690100cf68010041ed000019390000667b0100135f01007e230000379e00000b9300009b2400005340010056cf00008c2e00004a7900005b640000933d0000f0e9000016b10000475900006b3c0100a74900006dbe0000f6760000d4a0000046fd0000ec7f01001347010058fd00006a9200005006000094f10000df28000018110100fa58010044b70000894d0000b7670100ae6e0100ab2e000021a60000a68500008861010044af00001949010028b100004ebb000086d10000930c0100ac3d01003ec10000eb4c0000728a00001512010048bb0000331a00005c5301004ad70000aeb90000ab3e0100b15c000083520100d21f01002922000093900000d3800000694a0000f0160100c17c0000abad0000b14a0000230f0000e7930000f7ac0000962400000c110100801100005b570000046a0000e90d00002a6201002e310000178a00003bc3000083210000a1c7000012c400006a6c0000fe3d01000c010100c62c0000cee70000322f01005d28000032c90000a1c10000cd0101003715000027fc000039a20000c67d0000df480100092b010039030000f1c60000fc2c000031700000695700000580000045110100f10e00008ea8000050900000c4b800001bea00001f21010004120000e93b00005bb900005e2e0000fc610100fb3e0100f56401006821010044520000edaa00000d9300005460010081ab0000256f00009ccb00000607010041b60000821a00005ff300007f1e0000b32b0000c56f0000322901006c7a0000bf7b010040c600002d2c0100c7aa00004c38010090ac0000793d0100d9330000f2f00000ce41000025530000493e0000675400008b020000e84a0000f8120000bd6301009847010093930000d80d01006e6b000032670000be120000655000004d39010082ad00009d3b0100947e0100877100005b860000c39e0000e93f00008bed0000f25c0100f2830100a1ff00002d7500004f8a0000a7df0000d0c5000082380100f0690000eba400002319010097330000fc3401000d660000ee4f000017da000030750100793c000090c20000ec6f01002d300100d142000035c400005bd5000099bb0000eaad0000dba100009e2c01005c8f0000b09e00006b6001008d720000dc380100879400007faf00004e4a00003d0a01006e0a0000fa5e00000a21000076190000dda300001c6001001c8600005c010100d3590000bf92000033b70000059d0000f75000001df00000c9030000d9f300008a96000076e9000061490100811d0000bc4200007a670000c9aa0000fc6a010062ea0000c91c0000590d0000b8b80000d5aa0000a94b010012ac0000f1f00000b2eb0000f7ef00007e940000f06d010033470000aa070000f21b0100e8ca000089200000e5420100c2770000a9cf00001ed60000982500007e7000008be900005d1b010093eb0000280e01003b8f00006f19010006210000fa61010089840000f50201003f42010057210000f33401003da000001233010034a300007b020100fa0b000084b7000081b20000ffc00000c71b0100c1b4000098170100d8d100002de10000f3f60000029800005c7701003d7500004f6d0100041a0100b99c000090100100be380000fc280100d66300004fc700007ae400008dc70000eba60000b30d0100adef000057cf00005d270100f5050000b2590000a3450000cb2e000011780100825d0100013f0000aa1c000037a80000bd070100cfa00000cc0801007c4601004a8d00002b2a00003e550100994201005486000016bc000051a40000433c0100f99000008c000000a6f00000a44f0000f27c0100238f000017790000d1c000002feb0000ecfa0000e6830100f04c0100108a000076eb0000ed970000e14a00009efe0000fc490100d90d00004d9000007cc900000d5f0100213a000081460100836b0000d15800006e840000750d0100a1540100e838000079710100d53d00009f450000a60e01003b3c0100cb2901002ef8000068ed0000a69600005ee3000053eb00001f4701007c8b0000e8c600004c930000932d000087ec0000ef050000f8c8000026e50000795400006a6b01006a2b0100ad3e00000c9e0000791000007bf1000012b60000d4580000232a0000f4c90000931701006a120100b76e000014670100c7420000332201005afc0000bf05000081320000fc3e010036c70000914600002c540000e6b700003de800002e740000442c00003c670000636b0000066a0100e7bb000037fa0000ed5e0100f72e000091b60000a48f0000e31301000d65000007a60000b7c40000a15400008944000098db00001572000004780100b8660100b53a00009560010069db0000ca510000d77e01002e2f0100cc4a0000a79a0000c41b0100768500009e8201002f1401002ced0000990b0100217e0100d87301001c63000085f700004d8b0000dcbd0000b6030000a4080100bc6801005b800000a54f000092650000f0130000b9a00000a96c0100b16000000c6400000b8d0000f193000082250100fc11010035b4000074770100ef140000c42c0100ae660100dca600004b080000d82d0100d2830000166f0100c0a30000c863010062b000002a970000d0a60000052a0000ddb90000455d00006619000008da0000855b0100034a01003f7f0100380a0100046500000d4b01004a0f01003e6101007a480000a4ae0000c8610000dd7b0000b397000056210100252f0000c2490100d635000022d10000e0640100bbb70000da560000c7a10000e1d70000f94f0000ff29010047dc00008d270100b86c000091e700007f27000092450000f2c40000bc6c01006d4e0000c19b000063a7000002b100005b4200006fb2000056df000013830000774f010024520000a9ba0000c6120000f1ba00003101010020290100e0f40000a5ca0000347a010006450000464501009c35000038f800009a7c00000bbb0000aca30000c73f000037820100340f01008faa0000a67601005bad00003f1301006eea00006ce600005c3f000067800000517c0100303b00003f6301006a4701007827010058ec0000b31a000003310000e1490100388300005dab000029cc0000a13d0000fd3000000b0f000083960000eccb0000be840100964400006b130100bed30000026e010048230000a2f300009317000002ae0000d1340100293200006e7a0100fab50000d39100003458010007220000a9550100422d01005c6401006c2700001f720000a5740000aab8000028eb0000a60501000c900000fec80000027b0100807e00000de50000
+    m_values:
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - Esprit de la Meute
+    - "Inflige {damage:dmg} en croix<sprite name=\"cell_cross\">.\nConf\xE8re <b>\xC9LEVAGE</b>
+      \xE0 toutes vos b\xEAtes."
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - Aiguille
+    - 'Inflige {damage:dmg}.
+
+      Si la cible a moins de {value:pvmin} PV, ce sort revient dans votre main.'
+    - Coup de Gel
+    - "Inflige {@damages@} et retire 1 PA \xE0 l'adversaire."
+    - "Fl\xE8che d'Immolation"
+    - "Inflgie {@damages@}.\nChaque ennemi autour de la cible subit 2 d\xE9g\xE2ts
+      si vous avez au moins 5 Feu."
+    - "Fl\xE8che explosive"
+    - "Inflige {@damages@} \xE0 une cible et aux personnages autour de la cible."
+    - "Pr\xE9dateur"
+    - "D\xE9pense vos points de R\xE9serve.\nInflige {@damages@} pour chaque point
+      d\xE9pens\xE9.\nLes COmpagnons, Invocations et M\xE9canismes subissent le double
+      de d\xE9g\xE2ts."
+    - "Tir Concentr\xE9"
+    - "Consomme tous vos PA restants.\nInflige {@damages@} par PA consomm\xE9."
+    - "Tir Crois\xE9"
+    - "Inflige {@damages@}.\nSi un alli\xE9 est adjacent \xE0 la cible, piochez un
+      sort."
+    - "Tir \xE0 Bout Portant"
+    - Inflige {@damages@} et repousse la cible d'1 case.
+    - "Tir \xE0 Longue Port\xE9e"
+    - "Inflige {@damages@} par point de port\xE9e."
+    - "Vol\xE9e de Fl\xE8ches"
+    - "Inflige {@damages@} \xE0 tous les ennemis.\nCe sort revient dans la main si
+      c'est le premier sort jou\xE9 du tour."
+    - "Arbre \xE0 Chat"
+    - "Sur 3 ou moins : Inflige autant de d\xE9g\xE2ts \xE0 un personnage +{@damages@}.\nSur
+      4 ou plus : Soigne d'autant de PV un personnage +0...2...4."
+    - "Bond du F\xE9lin"
+    - "D\xE9place votre H\xE9ros de 2 cases.\nIl re\xE7oit 1D6 d\xE9g\xE2ts +{@damages@}."
+    - Brelan
+    - "Inflige {@damages@}.\nInflige 2 d\xE9g\xE2ts suppl\xE9mentaires si vous avez
+      au moins 3 Terre."
+    - Chachacha
+    - "Invoque un CHACHA sur une case adjacente \xE0 votre H\xE9ros."
+    - Coup Critique
+    - "Pour ce tour, vos Compagnons infligent 1D6 +{@damages@} suppl\xE9mentaires
+      lors de leur attaque."
+    - "D\xE9 Assommant"
+    - "Inflige 1D6 +{@damages@}.\nVotre adversaire perd une carte al\xE9atoire de
+      sa main sur 3 ou moins."
+    - "D\xE9 du Chateux"
+    - 'Inflige 1D6 +{@damages@}.
+
+      -1 niveau dans chaque jauge adverse sur 3 ou moins.'
+    - "D\xE9 Ecaflip"
+    - "Inflige 1D6 +{@damages@}.\nR\xE9cup\xE9rez ce sort sur 3 ou moins."
+    - "D\xE9 Motivant"
+    - 'Inflige 1D6 +{@damages@}.
+
+      +2 PA pour ce tour sur 3 ou moins.'
+    - "D\xE9 Protecteur"
+    - "Conf\xE8re 1D6 +0...5...9 d'Armure.\n+2 Armure sur 3 ou moins."
+    - "D\xE9 Terreux"
+    - 'Inflige 1D6 +{@damages@}.
+
+      +2 Terre sur 3 ou moins.'
+    - "D\xE9 Venteux"
+    - 'Inflige 1D6 +{@damages@}.
+
+      +2 Air sur 3 ou moins.'
+    - Full
+    - "Inflige {@damages@}.\nPour ce tour : Le co\xFBt de votre prochain sort est
+      r\xE9duit de 1 PA si vous avez au moins 3 Air."
+    - Relance
+    - "D\xE9faussez votre main.\nPiochez autant de cartes que de cartes d\xE9fauss\xE9es."
+    - "Tr\xE8fle"
+    - "Sur 3 ou moins : Pour ce tour, le personnage cibl\xE9 gagne autant de d\xE9g\xE2ts
+      +0...2...4 pour sa prochaine attaque.\nSur 4 ou plus : Le personnage cibl\xE9
+      gagne autant d'Armure +0...3...5."
+    - Fendre l'Air
+    - "Inflige {damage:d0} <b>OU</b> {damage:d1} si la cible est {#VENTILATED[\xC9vent\xE9e]}."
+    - Brise
+    - "Inflige {damage:dmg}.\nR\xE9duit de <b>1\\_PA</b> le prochain sort que vous
+      lancez ce tour."
+    - Foudroyer
+    - Inflige {damage:dmg} et applique {#VENTILATED}.
+    - Uppercut
+    - Inflige {damage:dmg} et applique {#VENTILATED}.
+    - Dag
+    - Inflige {damage:dmg}.
+    - Intimidation
+    - "Inflige {damage:dmg} aux personnages adjacents \xE0 votre h\xE9ros et les repousse
+      de {cell:c}."
+    - Jabs
+    - "Inflige {damage:d0} <b>OU</b> {damage:d1} si la cible est {#VENTILATED[\xC9vent\xE9e]}."
+    - Poing de Glace
+    - "Inflige {damage:dmg}.\nCe sort co\xFBte 1\\_<b>PA</b> de moins pour chaque
+      alli\xE9 adjacent \xE0 votre h\xE9ros."
+    - Rafale
+    - "Inflige {damage:dmg}.\nR\xE9duit de 1\\_<b>PA</b> le co\xFBt du prochain sort
+      <b>Air</b><sprite name=\"wind\"> que vous lancez durant ce tour."
+    - "Tonnerre en S\xE9rie"
+    - 'Inflige {damage:dmg}.
+
+      {#BOUNCE}'
+    - Crochet
+    - Inflige {damage:dmg} et repousse un personnage de {cell:c}.
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - Aiguille
+    - "Inflige {damage:d0} sur les {cell:c} devant votre h\xE9ros <b>OU</b> {damage:d1}
+      si les cibles sont {#OILED[Huil\xE9es]}."
+    - Appel des Momies
+    - 'Vos SINISTROS se transforment en portails qui appellent des MOMIES.
+
+      Les MOMIES disposent de 2 PV et 2 AT.'
+    - Blindage Temporel
+    - "Conf\xE8re @damages@ AR \xE0 un alli\xE9.\nVos SINISTROS gagnent 2 BL."
+    - "Br\xFBlure Sinistre"
+    - "Inflige {@damages@} \xE0 un ennemi\nOU\nEXPLOSION"
+    - Choc Temporel
+    - Inflige {damage:dmg} et applique {#VENTILATED}.
+    - Concentration
+    - "Inflige {@damages@}.\nPiochez 1 sort si vous avez au moins 5 PA en R\xE9serve."
+    - "D\xE9monter"
+    - Inflige {damage:dmg}.
+    - Horloge
+    - "Inflige {@damages@}.\n-1 PA \xE0 votre adversaire.\nCo\xFBte 2 PA de moins
+      si vous avez au moins 6 PA dans votre R\xE9serve.\nAjoute 1 PA dans votre R\xE9serve."
+    - Modification de Jauge
+    - "Inflige {@damages@}.\nInverse 2 de vos Jauges.\nAjoute 1 PA dans votre R\xE9serve."
+    - "Poussi\xE8re Temporelle"
+    - "Inflige {damage:dmg} autour de votre h\xE9ros."
+    - Ralentissement
+    - "Inflige {@damages@}.\n-1 PA \xE0 votre adversaire."
+    - Rayon Obscur
+    - "Inflige {@damages@}.\nCoup de Gr\xE2ce : +2 PA dans votre R\xE9serve.\nAjoute
+      1 PA \xE0 votre R\xE9serve."
+    - "Sablier de X\xE9lor"
+    - "Inflige {@damages@}.\nCoup de Gr\xE2ce : +3 PA pour ce tour.\nAjoute 1 PA \xE0
+      votre R\xE9serve."
+    - "Science des M\xE9canismes"
+    - "T\xE9l\xE9portez un {#MECHANISM} jusqu'\xE0 {cell:c} et lui donne +{blindage:bl}."
+    - Sinistro Air
+    - "Construisez un {objectMechanism:398}\njusqu'\xE0 {value:cell} cases de votre
+      h\xE9ros."
+    - Sinistro Eau
+    - "Construisez un {objectMechanism:559}\njusqu'\xE0 {value:cell} cases de votre
+      h\xE9ros."
+    - Souffle
+    - "Inflige {@damages@} \xE0 un personnage ennemi et le repousse d'1 case.\n+1
+      niveau de Jauge Air par sort jou\xE9 avant."
+    - Synchronisation
+    - "Inflige {damage:dmg}.\nInflige {damage:mult} suppl\xE9mentaires par <b>SINISTRO</b>
+      alli\xE9 en jeu."
+    - "T\xE9l\xE9portation Courte"
+    - "T\xE9l\xE9portez votre h\xE9ros jusqu'\xE0 {cell:c}.\nIl inflige ensuite {damage:dmg}
+      autour de lui."
+    - "T\xE9l\xE9portation Forc\xE9e"
+    - "T\xE9l\xE9portez un adversaire jusqu'\xE0 {cell:c} et lui inflige {damage:dmg}"
+    - Vol du Temps
+    - "Inflige {@damages@}.\nCo\xFBte 2 PA de moins si vous avez au moins 5 PA en
+      R\xE9serve."
+    - Xelorium
+    - "Inflige {@damages@} \xE0 un personnage.\nTous vos SINISTROS infligent 2 d\xE9g\xE2ts
+      sur leurs lignes."
+    - Hypnose de Toxine
+    - '{companion:231} <b>charge</b> de 4 cases en ligne et {#STUN[Assomme]} sa cible.'
+    - Peur du Noir
+    - Inflige {damage:dmg} et repousse de {cell:c}.
+    - Armure de Boue
+    - "Conf\xE8re 5 AR (ou Blindage) \xE0 l'alli\xE9 cibl\xE9.\nAjoute 1 PA dans votre
+      R\xE9serve."
+    - Boue
+    - "Piochez autant de cartes que de H\xE9ros, Compagnons et Invocations alli\xE9es
+      en jeu.\nAjoute 1 PA dans votre R\xE9serve."
+    - Choc Sinistre
+    - "Inflige {@damages@} OU charge ce sort sur un SINISTRO alli\xE9."
+    - Contre Temps
+    - "Conf\xE8re 2 Blindage \xE0 vos SINISTROS.\n-1 Niveau \xE0 chaque Jauge adverse
+      si vous avez au moins 3 Terre."
+    - Gelure
+    - "Ajoute 2 PA \xE0 votre R\xE9serve."
+    - Horloge
+    - "Inflige {@damages@}.\n-1 PA \xE0 votre adversaire.\nAjoute 1 PA dans votre
+      R\xE9serve."
+    - Pluie d'Aiguilles
+    - "Inflige autant de d\xE9g\xE2ts que de niveaux dans votre jauge Eau.\nAjoute
+      1 PA dans votre R\xE9serve."
+    - Ralentissement
+    - "Inflige {@damages@}.\n-1 PA \xE0 votre adversaire si vous avez au moins 3 Eau."
+    - Sarcophage
+    - 'Inflige {@damages@}.
+
+      Piochez 2 cartes si vous avez au moins 3 Terre.'
+    - Sinistre Mouvement
+    - "T\xE9l\xE9porte un SINISTRO alli\xE9 de 3 cases et lui conf\xE8re 2 <b>BLINDAGE</b>."
+    - Sinistro Air
+    - "Invoque un SINISTRO sur une case adjacente \xE0 votre H\xE9ros.\nApparition
+      : Gagne 1 Blindage.\nInsensible aux d\xE9g\xE2ts des sorts."
+    - Sinistro Air
+    - "Invoque un SINISTRO sur une case adjacente \xE0 votre H\xE9ros.\nApparition
+      : Gagne 1 Blindage.\nInsensible aux d\xE9g\xE2ts des sorts."
+    - Synchronisation
+    - "Inflige {@damages@}.\n+2 d\xE9g\xE2ts par SINISTRO alli\xE9 en jeu.\nAjoute
+      1 PA dans votre R\xE9serve."
+    - Berger Tofu
+    - Invoque un {summoning:96}.
+    - Portail Eliatrope
+    - "D\xE9placez YUGO dans une case adjacente \xE0 un ennemi.\nYUGO inflige ensuite
+      {damage:dmg} autour de lui \xE0 tous les personnages."
+    - Permutation
+    - "Inflige {damage:dmg}.\n+2 \xE0 votre <b>jauge \xE9l\xE9mentaire</b> <b>Eau</b>
+      si la cible est {#WET[Mouill\xE9e]}."
+    - "+2 PA jusqu'\xE0 la fin du tour.\nVotre H\xE9ros gagne 1 AR."
+    - "Eternit\xE9"
+    - "Construisez un {objectMechanism:955}\njusqu'\xE0 {value:cell} cases de votre
+      h\xE9ros."
+    - Sinistro Feu
+    - "Consomme les niveaux de votre <b>R\xE9serve</b> pour infliger 2\\_d\xE9g\xE2ts
+      par niveau consomm\xE9."
+    - Charge Temporelle
+    - "T\xE9l\xE9portez un M\xE9canismes alli\xE9 de 3 cases."
+    - "T\xE9l\xE9portation de M\xE9canismes"
+    - "Construisez un {objectMechanism:583}\njusqu'\xE0 {value:cell} cases de votre
+      h\xE9ros."
+    - Sinistro Terre
+    - "Consomme 10 Points de R\xE9serve.\nVotre adversaire ne peut pas jouer de sorts
+      lors de son prochain tour."
+    - Maitrise Temporelle
+    - 
+    - 
+    - 
+    - 
+    - Concentration
+    - "Soigne 2 PV \xE0 votre H\xE9ros."
+    - "Soigne 5 PV \xE0 tous les personnages autour de votre H\xE9ros."
+    - Pacification
+    - Repousse un personnage d'1 case.
+    - Petite Fiole de Frayeur
+    - "D\xE9place votre H\xE9ros \xE0 c\xF4t\xE9 d'un personnage alli\xE9 et le soigne
+      de 2 PV."
+    - Soin d'Urgence
+    - "Soigne 2 PV.\nD\xE9phasage : Soigne 3 PV."
+    - Soin Purifiant
+    - "Votre H\xE9ros sacrifie 3 PV pour soigner d'autant tous les personnages alli\xE9s."
+    - Transfert de Vie
+    - Main de la Terre
+    - Inflige {@damages@}.
+    - "Inflige {@damages@}.\nCoup de Gr\xE2ce : La cible revient \xE0 la vie sous
+      votre contr\xF4le avec 1 PV."
+    - "Retour \xE0 la Vie"
+    - "Place un Rempart de Feu sur une case libre adjacente \xE0 votre H\xE9ros.\nInflige
+      2 d\xE9g\xE2ts aux ennemis qui marchent dessus.\nSoigne de 2 PV les alli\xE9s
+      qui marchent dessus."
+    - Petit Rempart de Feu
+    - "Le personnage alli\xE9 cibl\xE9 rejoue son tour mais meurt \xE0 la fin.\nIl
+      inflige 2 d\xE9g\xE2ts suppl\xE9mentaires."
+    - Dopper
+    - Invocation de Chafer
+    - Invoque un Chafer.
+    - "+2 PA jusqu'\xE0 la fin du tour.\nVotre H\xE9ros gagne 1 AR."
+    - Assurance
+    - Envol
+    - "Votre H\xE9ros gagne +1 PM et +1 AR.\nD\xE9phasage : +3 PM."
+    - Sacrifice Honteux
+    - "Vous sacrifiez un personnage alli\xE9 pour qu'il inflige 5 d\xE9g\xE2ts autour
+      de lui."
+    - 'Invoque un Lapino.
+
+      Le Lapino soigne la cible lorsqu''il attaque.'
+    - Invocation de Lapino
+    - "Donne +{armor:ar} \xE0 un personnage <b>OU</b> +{blindage:bl} \xE0 un <b>SINISTRO</b>
+      alli\xE9."
+    - Blindage Temporel
+    - Souffle
+    - Inflige {damage:dmg} et repousse de {cell:c}.
+    - "Cadran de X\xE9lor"
+    - Transforme un de vos <b>SINISTROS</b> en {objectMechanism:807}.
+    - Infligez {damage:dmg} <b>OU</b> transformez un <b>SINISTRO</b> en {objectMechanism:1653}.
+    - Hydruille
+    - Invoque une <b>MOMIE</b>.
+    - Invocation de Momie
+    - Xelorium
+    - Inflige {damage:dmg} et applique {#OILED}.
+    - "\xC0 chaque fois que votre H\xE9ros re\xE7oit des d\xE9g\xE2ts physiques, il
+      inflige {@damages@}."
+    - Contre
+    - "T\xE9l\xE9portation Acc\xE9l\xE9r\xE9e"
+    - "T\xE9l\xE9portez votre h\xE9ros d'1\\_case ou autour d\u2019un <b>SINISTRO</b>
+      alli\xE9.\nIl gagne {armor:ar}."
+    - Babydruille
+    - Transformez un de vos <b>SINISTROS</b> en {objectMechanism:667}.
+    - "Inflige {damage:dmg}.\n<b>COUP DE GR\xC2CE\\_:</b> Votre h\xE9ros gagne {armor:ar}."
+    - Choc du Golem
+    - 
+    - 
+    - 
+    - 
+    - Inflige {damage:dmg} et applique {#WET}.
+    - Siber
+    - "Inflige {damage:dmg}.\nCe sort coute 1\\_<b>PA</b> de moins par alli\xE9 adjacent
+      \xE0 votre h\xE9ros."
+    - Lance de Glace
+    - "Inflige {damage:dmg}.\nPiochez un sort pour chaque alli\xE9 adjacent \xE0 votre
+      h\xE9ros."
+    - Nouvelle Vague
+    - Inflige {damage:dmg} et applique {#WET}.
+    - Morsure Glaciale
+    - "Inflige {damage:dmg}.\nAjoute +1\\_<b>PA</b> \xE0 votre <b>r\xE9serve</b> par
+      alli\xE9 adjacent \xE0 votre h\xE9ros."
+    - Onde de Choc
+    - "Inflige {damage:dmg}.\n{#STUN[Assomme]} si la cible si elle est {#WET[Mouill\xE9e]}."
+    - Blizzard
+    - Inflige {damage:dmg}.
+    - Fulgur
+    - Inflige {damage:dmg} en croix<sprite name="cell_cross">.
+    - Corriger
+    - "Inflige {damage:dmg}.\nSoigne votre h\xE9ros de {heal:h} si la cible est {#OILED[Huil\xE9e]}."
+    - Fondre la Vie
+    - Fondre le Sol
+    - "Inflige {damage:dmg} aux {cell:c}\ndevant le h\xE9ros.\nAjoute +1 \xE0 votre
+      <b>jauge Feu</b><sprite name=\"fire\"> par adversaire touch\xE9."
+    - "Transformez une case libre adjacente \xE0 votre h\xE9ros en {floorMechanism:774}.\nSi
+      vous avez ce sort dans votre deck, votre h\xE9ros gagne +{heal:pv} au d\xE9but
+      du combat."
+    - Sol Motivant
+    - "Votre H\xE9ros gagne l'effet {#INITIATIVE} si la cible est sous l'\xE9tat {#VENTILATED}."
+    - Aura de Riposte
+    - 
+    - 
+    - Inflige {damage:dmg}.
+    - Frappe Temporelle
+    - Inflige {damage:dmg} et applique {#VENTILATED}.
+    - "Fl\xE9trissement"
+    - "T\xE9l\xE9portation Longue"
+    - "T\xE9l\xE9portez votre h\xE9ros jusqu'\xE0 {cell:c}.\nIl inflige ensuite {damage:dmg}
+      autour de lui.\n{#REWIND}"
+    - 'Inflige {damage:dmg}.
+
+      {#REWIND}'
+    - Allignement
+    - Inflige {damage:dmg} et applique {#WET}.
+    - Concentration
+    - 'Inflige {damage:dmg}.
+
+      {#REWIND}'
+    - Sarcophage
+    - "Inflige {damage:dmg}.\nVolez 1\\_point \xE0 la <b>r\xE9serve</b> adverse si
+      la cible est {#WET[Mouill\xE9e]}."
+    - "Sablier de X\xE9lor"
+    - Gelure
+    - Inflige {damage:dmg}.
+    - "Inflige {damage:dmg}.\nLe co\xFBt de votre prochain sort est r\xE9duit d\u2019autant
+      que de points dans votre <b>jauge Terre</b> <sprite name=\"earth\">."
+    - "Ajustement \xC9l\xE9mentaire"
+    - Petite Frappe Enlisante
+    - Inflige {damage:dmg} et applique {#MUDDY}.
+    - Inflige {damage:dmg} et applique {#MUDDY}.
+    - Frappe Enlisante
+    - Petite Aiguille
+    - "Inflige {damage:d0} sur les {cell:c} devant votre h\xE9ros <b>OU</b> {damage:d1}
+      si les cibles sont {#OILED[Huil\xE9es]}."
+    - "Inflige {damage:dmg}.\nVos <b>SINISTROS</b> d\xE9clenchent {#EXPLOSION[EXPLOSION\\_({value:ex})]}."
+    - "Flamme Huil\xE9e"
+    - "T\xE9l\xE9portez un personnage \xE0 c\xF4t\xE9 d\u2019un <b>SINISTRO</b> alli\xE9.\nSi
+      vous avez ce sort dans votre deck, votre h\xE9ros gagne +{heal:h} au d\xE9but
+      du combat."
+    - "\xC9ternit\xE9"
+    - "Le Compagnon de votre choix peut \xE0 nouveau se d\xE9placer et attaquer."
+    - Garde Temps
+    - "Inflige {damage:dmg}.\n+1\\_<b>PA</b> \xE0 votre <b>r\xE9serve</b> par <b>SINISTRO</b>
+      alli\xE9 en jeu si la cible est {#WET[Mouill\xE9e]}."
+    - Vol du Temps
+    - "Inflige {damage:dmg}.\nVolez 1\\_point \xE0 la <b>r\xE9serve</b> adverse si
+      la cible est {#WET[Mouill\xE9e]}."
+    - Ralentissement
+    - "Inflige {damage:dmg}.\nPiochez un sort si la cible est {#WET[Mouill\xE9e]}."
+    - Coucou
+    - Horloge
+    - "Inflige {damage:dmg}.\nVolez 2\\_points \xE0 la <b>r\xE9serve</b> adverse si
+      la cible est {#WET[Mouill\xE9e]}."
+    - Inflige {damage:dmg} et applique {#WET}.
+    - Accumulation
+    - "Br\xFBlure Huil\xE9e"
+    - Inflige {damage:dmg} et applique {#OILED}.
+    - "Rayon \xC9l\xE9mentaire"
+    - "Inflige {damage:dmg}.\n+1 \xE0 vos <b>jauges \xE9l\xE9mentaires</b> si la cible
+      est {#MUDDY[Boueuse]}."
+    - Rayon Obscur
+    - "Inflige {damage:dmg}.\nAjoute {value:r} <b>PA</b> \xE0 votre <b>r\xE9serve</b>
+      si la cible est {#MUDDY[Boueuse]}."
+    - Inflige {damage:dmg}.
+    - "Br\xFBlure Ardente"
+    - "Inflige {damage:dmg}.\nVos <b>SINISTROS</b> d\xE9clenchent {#EXPLOSION[EXPLOSION\\_({value:ex})]}."
+    - "Br\xFBlure Temporelle"
+    - "Vous piochez 2\\_sorts.\nSi vous avez ce sort dans votre deck, votre h\xE9ros
+      gagne +{heal:h} au d\xE9but du combat."
+    - Chronophagie
+    - "Votre <b>R\xE9serve</b> gagne autant de niveaux que de <b>SINISTROS</b> alli\xE9s
+      en jeu."
+    - Exactitude
+    - "Votre H\xE9ros gagne l'effet <b>CONTRE</b> si la cible est <b>MOUILL\xC9</b>."
+    - Contre
+    - "Votre H\xE9ros gagne l'effet <b>BOUCLIER</b> si la cible est sous l'\xE9tat
+      <b>BOUEUX</b>."
+    - Bouclier
+    - "Inflige {damage:dmg}.\nVotre h\xE9ros gagne autant d'<b>Armure</b>."
+    - "X\xE9lorisation"
+    - "Inflige {damage:dmg}.\nR\xE9duit de 1\\_<b>PA</b> le co\xFBt du prochain sort
+      <b>Eau</b><sprite name=\"water\"> que vous jouez dans ce tour."
+    - Maitrise Temporelle
+    - "Applique l'effet <b>P\xC9TRIFICATION</b> si la cible est dans l'\xE9tat <b>BOUEUX</b>."
+    - "P\xE9trification"
+    - 
+    - 
+    - Pic Glacial
+    - "Inflige {damage:d0} <b>OU</b> {damage:d1} si la cible est {#WET[Mouill\xE9e]}."
+    - Tsunami
+    - Inflige {damage:dmg}.
+    - Ebranler
+    - Inflige {damage:dmg} et {#MUDDY}.
+    - Frappe du Dragon
+    - Inflige {damage:dmg} et applique {#MUDDY}.
+    - 'Inflige {damage:dmg}.
+
+      {#ROOTED[Immobilise]} la cible si elle est {#MUDDY[Boueuse]}.'
+    - Frappe Immobilisante
+    - Butoir
+    - Inflige {damage:dmg}.
+    - Inflige {damage:d0} <b>OU</b> inflige {damage:d1} si la cible est {#MUDDY[Boueuse]}.
+    - Fracasser
+    - 'Inflige {damage:dmg}.
+
+      {#DEATHBLOW}\_: Applique {#MUDDY} sur les personnages adverses.'
+    - Choquer
+    - Charge Courte
+    - "Votre h\xE9ros <b>charge</b> de {cell:c} en ligne et inflige {damage:dmg}."
+    - Charge Longue
+    - "Votre h\xE9ros <b>charge</b> de {cell:c} en ligne et inflige {damage:dmg}.\n{#STUN[ASSOMME]}
+      la cible si elle est {#MUDDY[Boueuse]}."
+    - "Bond \xC9tourdissant"
+    - "T\xE9l\xE9portez votre h\xE9ros de 2\\_cases. \nIl inflige ensuite {damage:dmg}
+      autour de lui."
+    - "Votre h\xE9ros <b>charge</b> de {cell:c} en ligne\net inflige {damage:dmg}.\n{#BOUNCE}"
+    - "Charge Tonnerre en S\xE9rie"
+    - Masser
+    - Inflige {damage:dmg} et applique {#OILED}.
+    - "Inflige {damage:d0} <b>OU</b> inflige {damage:d1} si la cible {#OILED[Huil\xE9e]}."
+    - "Br\xFBler"
+    - "Inflige {damage:d0} <b>OU</b> inflige {damage:d1} si la cible est {#OILED[Huil\xE9e]}."
+    - Inspiration
+    - "Inflige {damage:dmg}.\nD\xE9clenche {#EXPLOSION[EXPLOSION ({value:ex})]} autour
+      de la cible si elle est {#OILED[Huil\xE9e]}."
+    - "Br\xFBtalit\xE9"
+    - "Inflige {damage:d0} et applique l'\xE9tat {#OILED} <b>OU</b> inflige {damage:d1}
+      si la cible est d\xE9j\xE0 {#OILED[Huil\xE9e]}."
+    - "Bl\xE2mer"
+    - "Sol Acc\xE9l\xE9rateur"
+    - "Transformez une case libre adjacente \xE0 votre h\xE9ros en {floorMechanism:1534}.\nSi
+      vous avez ce sort dans votre deck, votre h\xE9ros gagne +{heal:pv} au d\xE9but
+      du combat."
+    - "Sol B\xE9nit"
+    - "Transforme une case libre adjacente \xE0 votre H\xE9ros en <b>SOL B\xC9NIT</b>.\n\n<b>D\xC9BUT
+      DE TOUR\\_n:</b> Le joueur dont le personnage est dessus pioche 1\\_sort suppl\xE9mentaire."
+    - "Le Compagnon de votre choix peut \xE0 nouveau se d\xE9placer et attaquer."
+    - "Jamais Fatigu\xE9"
+    - Inflige {@damages@} en ligne (3).
+    - Fondre
+    - "Inflige {damage:d0} <b>OU</b> inflige {damage:d1} autour de votre h\xE9ros
+      aux cibles {#OILED[Huil\xE9es]}."
+    - "Fondre l'\xC2me"
+    - "Inflige {damage:dmg}. {#DEATHBLOW}\\_: Ajoutez +2 <b>PA</b> \xE0 votre <b>r\xE9serve</b>."
+    - Trancher
+    - "Consomme votre R\xE9serve pour invoquer un <b>IOP L\xC9GENDAIRE</b> qui disparait
+      au d\xE9but de votre prochain tour.\nLe <b>IOP L\xC9GENDAIRE</b> gagne autant
+      d'<b>AT</b> et de <b>PM</b> que de niveaux de <b>R\xE9serve</b> ainsi consomm\xE9s."
+    - "L\xE9gende"
+    - "Appliquer l'\xE9tat {#STUN} si la cible est sous l'\xE9tat {#MUDDY}"
+    - Assommer
+    - Bond
+    - "T\xE9l\xE9portez un personnage alli\xE9 de 3\\_cases. Si vous avez ce sort
+      dans votre deck, votre h\xE9ros gagne +{heal:pv} au d\xE9but du combat."
+    - Charge
+    - "Votre h\xE9ros <b>charge</b> en ligne. Il inflige {damage:dmg} + {damage:mult}
+      par cases parcourues."
+    - "D\xE9truisez un <b>SINISTRO</b> alli\xE9 pour soigner votre h\xE9ros de {heal:h}."
+    - "R\xE9paration"
+    - "T\xE9l\xE9porte votre H\xE9ros sur une case adjacente \xE0 un personnage sous
+      l'\xE9tat HUIL\xC9 et lui inflige {@damages@}."
+    - Tournoiement
+    - Stalagmite
+    - "Inflige {@damages@}.\n+1 PA pour ce tour si la cible est sous l'\xE9tat MOUILL\xC9."
+    - "\xC9cailles d'Adama\xEF"
+    - Donne +{armor:ar}.
+    - "Inflige autant de d\xE9g\xE2ts que de points dans votre <b>jauge Air</b> <sprite
+      name=\"wind\">."
+    - "Trait d'\xC9vangelyne"
+    - Soif d'Oropo
+    - "Inflige {damage:dmg} et soigne {companion:135} d\u2019autant."
+    - Tournoiement
+    - "T\xE9l\xE9portez votre h\xE9ros sur une case adjacente \xE0 un autre personnage
+      {#OILED} et lui inflige {damage:dmg}."
+    - "Inflige {damage:dmg}.\nGagnez +1\\_<b>PA</b> \xE0 votre <b>r\xE9serve</b> si
+      la cible est {#WET[Mouill\xE9e]}."
+    - Stalagmite
+    - Donne {#INVULNERABLE} pour 1 tour.
+    - Ronces d'Amalia
+    - Fureur de Tristepin
+    - "Consomme vos <b>PA</b> restants et inflige 2\\_d\xE9g\xE2ts par PA ainsi consomm\xE9."
+    - "Ma\xEEtre du Temps"
+    - "Inflige {damage:dmg} et applique l'\xE9tat {#WET}. \n{#REWIND}"
+    - Vieille Frappe
+    - "Construisez une {objectMechanism:1486} sur une case adjacente \xE0 un alli\xE9."
+    - Surprise de Remington
+    - Cape de Julith
+    - "Sacrifiez un alli\xE9 pour soigner votre h\xE9ros de {heal:hp}."
+    - Donne +{value:PM} <b>PM</b>.
+    - Course de Joris
+    - "T\xE9l\xE9portez un personnage de 2\\_cases.\nIl inflige {damage:dmg} aux personnages
+      adjacents \xE0 sa case d\u2019arriv\xE9e<sprite name=\"cell_cross\">."
+    - Discard all spells in hand
+    - Discard Hand
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - Vol
+    - "Vole {reserve_points:v} \xE0 la cible."
+    - Bouclier de Bump
+    - Donne {#SHIELD}.
+    - "Espoir d'\xC9cho"
+    - "Soigne de {heal:h} les alli\xE9s de la <b>zone</b> <sprite name=\"cell_circle2\">."
+    - Portail de Yugo
+    - "\xC9changez la position de deux personnages."
+    - "Vos <b>\xC2MES SPECTRALES</b> infligent {#EXPLOSION[EXPLOSION ({value:dmg})]}
+      autour d'elles."
+    - Explosion Spectrale
+    - "Inflige 5 d\xE9g\xE2ts autour d\u2019un de vos SINISTROS et applique l\u2019\xE9tat
+      HUIL\xC9 aux personnages adverses touch\xE9s."
+    - "Br\xFBlure Huil\xE9e"
+    - "Ajoute 1 PA \xE0 votre r\xE9serve par M\xE9canisme alli\xE9 en jeu."
+    - "Ma\xEEtre du Temps"
+    - "Vide vos PA restant et inflige 2 d\xE9g\xE2ts par points consomm\xE9s."
+    - Vieille Frappe
+    - "T\xE9l\xE9portation Forc\xE9e"
+    - "T\xE9l\xE9porte un personnage jusqu'\xE0 2 cases.\nOU\nT\xE9l\xE9porte un personnage
+      \xE0 c\xF4t\xE9 d'un SINISTRO alli\xE9 et lui inflige {@damages@}."
+    - "T\xE9l\xE9porte votre H\xE9ros de 2 cases. \nInflige 5 d\xE9g\xE2ts autour
+      de lui."
+    - "Bond \xC9tourdissant"
+    - "TOXINE charge de 6 cases en ligne et inflige 4 d\xE9g\xE2ts."
+    - Charge de Psychose
+    - "Inflige {damage:dmg}.\nVolez 1\\_<b>PA</b> \xE0 la <b>r\xE9serve</b> adverse."
+    - Eliacube de Nox
+    - Pelle de Ruel
+    - "Inflige {damage:dmg} et soigne votre h\xE9ros d'autant."
+    - "TOXINE charge de 4\\_cases et inglige 6\\_d\xE9g\xE2ts."
+    - Charge de Psychose
+    - "T\xE9l\xE9porte votre H\xE9ros de 2\\_cases et inflige {@damages@} aux personnages
+      autour de sa case d'arriv\xE9e."
+    - "Bond \xC9tourdissant"
+    - "Vos <b>SINISTROS</b> d\xE9clenchent <b>EXPLOSION\\_(6)</b>.\nApplique l'\xE9tat
+      <b>HUIL\xC9</b> sur les personnages adverses."
+    - "Br\xFBlure Huil\xE9e"
+    - "T\xE9l\xE9porte un personnage \xE0 c\xF4t\xE9 d'un <b>SINISTRO</b> alli\xE9
+      qui inflige 7\\_d\xE9g\xE2ts autour de lui."
+    - "T\xE9l\xE9portation Forc\xE9e"
+    - "\xC9changez la position de 2 personnages de moins de 3 cases de distance."
+    - "\xC9change Court"
+    - "\xC9changez la position d'un de vos <b>SINISTROS</b> avec celle d'un personnage
+      alli\xE9."
+    - "\xC9change Sinistre"
+    - Attaque Spectrale
+    - "Vos AMES SPECTRALES infligent 8 d\xE9g\xE2ts autour d\u2019elles."
+    - "\xC9clair Drainant"
+    - "Tuez un de vos Compagnons. Votre H\xE9ros gagne 6\\_<b>AT</b> de plus jusqu'\xE0
+      la fin du tour."
+    - "\xC9clair Drainant"
+    - Tuez un de vos Compagnons et piochez 2\_sorts.
+    - Frappe Chanceuse.
+    - Inflige {damage:dmgF}, 1 chance sur 3 d'infliger {damage:dmgT}.
+    - "{#NBCARDSINHANDMAIN [PAIRE]} : +3 <b>PM</b> \xE0 un alli\xE9.\n{#NBCARDSINHANDMAIN
+      \ [MAIN IMPAIRE] } : piochez 2 sorts."
+    - Ush le Tricheur
+    - "Charge Tonnerre en S\xE9rie"
+    - "Votre H\xE9ros charge de 2\\_cases en ligne et inflige 7\\_d\xE9g\xE2ts.\nIl
+      arrive dans le dos de sa cible s'il peut."
+    - "Bl\xE2mer"
+    - "Inflige {damage:d0} et applique l'\xE9tat {#OILED}.\nInflige {damage:d1} si
+      la cible est d\xE9j\xE0 {#OILED}."
+    - "Br\xFBler"
+    - 'Inflige {damage:d0}.
+
+      Inflige {damage:d1} si la cible {#OILED}.'
+    - "Fondre l'\xC2me"
+    - "Inflige {damage:d0} autour <sprite name=\"cell_around\"/> de votre H\xE9ros.\nInflige
+      {damage:d1} aux cibles {#OILED}."
+    - Fondre le Sol
+    - "Inflige {damage:dmg} aux {cell:c} devant le h\xE9ros.\nVous gagnez 1\\_point
+      de FEU<sprite name=\"fire\"> par adversaire touch\xE9."
+    - Fulgur
+    - Inflige {damage:dmg}.
+    - Masser
+    - "Inflige {damage:dmg} et applique l'\xE9tat {#OILED}."
+    - Tournoiement
+    - "T\xE9l\xE9porte votre H\xE9ros sur une case adjacente<sprite name=\"cell_cross\"/>
+      \xE0 un autre personnage {#OILED} et lui inflige {damage:dmg}."
+    - Inflige {damage:dmg} et repousse un personnage d'{cell:c}.
+    - Uppercut
+    - "Jamais Fatigu\xE9"
+    - "Le Compagnon de votre choix peut \xE0 nouveau se d\xE9placer et attaquer."
+    - "T\xE9l\xE9portation Longue"
+    - "T\xE9l\xE9porte votre h\xE9ros jusqu'\xE0 4\\_cases.{cell:c}\nOU\nT\xE9l\xE9porte
+      votre H\xE9ros \xE0\_cot\xE9\_d'un\_<b>SINISTRO</b> alli\xE9<sprite name=\"cell_cross\"/>.\nVos
+      <b>SINISTROS</b> d\xE9clenchent <b>EXPLOSION\\_(6)</b> {#EXPLOSION:ex}"
+    - Souffle
+    - 'Inflige {damage:dmg} et repousse d''{cell:c}.
+
+      REMBOBINAGE'
+    - Ralentissement
+    - 'Inflige {damage:dmg}.
+
+      Retire 1\_<b>PA</b><sprite name="ap"> si la cible est {#WET}.'
+    - Concentration
+    - "Inflige {damage:dmg} et applique l'\xE9tat {#WET}.\n<b>REMBOBINAGE</b>"
+    - Sinistro Air
+    - "Peut \xEAtre invoqu\xE9e \xE0 3\\_cases de votre h\xE9ros.{cell:c}\nConstruisez
+      un {objectMechanism:398}.\n<b>D\xC9BUT DE TOUR\\_:</b> Vous piochez 1\\_sort."
+    - Sinistro Eau
+    - "Peut \xEAtre invoqu\xE9e \xE0 3 cases de votre h\xE9ros.\nConstruisez un {objectMechanism:559}.\n<b>D\xC9BUT
+      DE TOUR\\_:</b> Vous gagnez 1\\_<b>PA</b><sprite name=\"ap\"> suppl\xE9mentaire
+      pour le tour."
+    - Horloge
+    - 'Inflige {damage:dmg}.
+
+      Retire 1\_<b>PA</b><sprite name="ap"> si la cible est {#WET}.'
+    - "Inflige {damage:dmg}.\nRetire 1\\_<b>PA</b><sprite name=\"ap\"> par <b>SINISTRO</b>
+      alli\xE9 en jeu si la cible est {#WET}."
+    - Vol du Temps
+    - Maitrise Temporelle
+    - "Inflige {damage:dmg}.\nLe prochain sort EAU que vous jouez dans ce tour co\xFBte
+      1\\_<b>PA</b><sprite name=\"ap\"> de moins."
+    - Peau de Dragon
+    - "Conf\xE8re {armor:ar} \xE0 Adamai."
+    - Bombe
+    - "Peut \xEAtre invoqu\xE9e \xE0 3 cases de Remington.\nConstruisez une {objectMechanism:1496}
+      ayant 7 <b>BLINDAGE</b> \xE0 c\xF4t\xE9 de REMINGTON.\n<b>D\xC9BUT DU TOUR\\_:</b>
+      Inflige 5\\_d\xE9g\xE2ts autour d'elle."
+    - "Acc\xE9l\xE9ration"
+    - "USH gagne 2\\_<b>PM</b> et 4\\_<b>AT</b> jusqu'\xE0 la fin du tour."
+    - Course Folle
+    - "JORIS gagne 3\\_<b>PM</b> et 2\\_<b>AT</b> jusqu\u2019\xE0 la fin du tour."
+    - "Inflige 2 d\xE9g\xE2ts. Consomme vos <b>PA</b><sprite name=\"ap\"> restants
+      et inflige 2 d\xE9g\xE2ts de plus par <b>PA</b><sprite name=\"ap\"> ainsi consomm\xE9."
+    - Vieille Frappe
+    - "Ma\xEEtre du Temps"
+    - "Vous gagnez 1\\_point de {#RESERVE} par M\xE9canisme alli\xE9 en jeu."
+    - Algarade
+    - "Inflige {damage:dmg}.\nSi votre adversaire a plus de <b>PA</b> que vous dans
+      sa <b>r\xE9serve</b>, piochez 1 sort."
+    - "Augmente de {value:at} l'<b>AT</b> de votre h\xE9ros et de vos compagnons,
+      jusqu\u2019\xE0 la fin du tour."
+    - Acharnement
+    - Bouclier
+    - "Donne {#SHIELD} \xE0 votre h\xE9ros.\nSi vous avez ce sort dans votre deck,
+      votre h\xE9ros gagne +2\\_<b>AR</b> au d\xE9but du combat."
+    - "Si vous avez 10 <b>PA</b> dans votre <b>r\xE9serve</b>, videz la pour invoquer
+      {summoning:906}."
+    - "L\xE9gendarus"
+    - "\xC9p\xE9es de Riposte"
+    - "Donne \xE0 un personnage alli\xE9 3 <b>\xC9P\xC9ES DE RIPOSTE</b> qui gravitent
+      autour de lui.\nChaque fois qu\u2019il subit une attaque physique, une \xE9p\xE9e
+      inflige {damage:dmg} \xE0 l'attaquant avant de dispara\xEEtre."
+    - "Peut \xEAtre invoqu\xE9 \xE0 3\\_cases de votre H\xE9ros.\nConstruisez un {floorMechanism:191}.\nASSEMBLAGE
+      : Piochez 1 sort."
+    - "Pi\xE8ge Zoda"
+    - "Pi\xE8ge Venteux"
+    - "Peut \xEAtre invoqu\xE9 \xE0 3\\_cases de votre H\xE9ros.\nConstruisez un {floorMechanism:191}.\nASSEMBLAGE
+      : Vous gagnez {air_points:air}."
+    - Inflige {damage:dmg}.
+    - "Dans les c\xF4tes"
+    - "Inflige {damage:dmg} et applique l'\xE9tat {#VENTILATED}."
+    - Dans les yeux
+    - "L\xE0 o\xF9 \xE7a fait mal"
+    - "Inflige {damage:dmg} et applique l\u2019\xE9tat {#VENTILATED}."
+    - "T\xE9l\xE9porte votre H\xE9ros \xE0 c\xF4t\xE9 d\u2019un pi\xE8ge alli\xE9.\nIl
+      inflige ensuite {damage:dmg} autour de lui."
+    - "D\xE9placement Nocturne"
+    - "Votre H\xE9ros inflige {damage:dmg} en ligne et recule de {cell:c} si la cible
+      est sous l\u2019\xE9tat {#VENTILATED}."
+    - Frappe Accrobatique
+    - "Votre H\xE9ros inflige {damage:dmg} en ligne et attire la cible devant lui
+      si elle est sous l\u2019\xE9tat {#VENTILATED}."
+    - Grappin Nocturne
+    - Pulsion
+    - "Inflige {damage:dmg}.\nVous gagnez {reserve_points:r} si la cible est sous
+      l\u2019\xE9tat {#VENTILATED}."
+    - "Peut \xEAtre invoqu\xE9 \xE0 3\\_cases de votre H\xE9ros.\nConstruisez un {floorMechanism:191}.\nASSEMBLAGE
+      : Gagnez 1\\_PA<sprite name=\"ap\"> pour ce tour."
+    - "Pi\xE8ge L\xE9bin"
+    - "Pi\xE8ge Mouillant"
+    - "Peut \xEAtre invoqu\xE9 \xE0 3\\_cases de votre H\xE9ros.\nConstruisez un {floorMechanism:191}.\nASSEMBLAGE
+      : Vous gagnez {water_points:eau}."
+    - "Inflige {damage:dmg} et applique l'\xE9tat {#WET}."
+    - Punition Engourdissante
+    - "Inflige {damage:dmg} et applique l'\xE9tat {#WET}."
+    - Punition Spongieuse
+    - Meilleur Doigt
+    - Inflige {damage:dmg}.
+    - Inflige {damage:dmg}.
+    - Deux Doigts
+    - "Inflige {damage:dmg}.\nGagnez 1\\_PA pour ce tour si la cible est sous l'\xE9tat
+      {#WET}."
+    - Poing Typhon
+    - Poing Tsunami
+    - "Inflige {damage:dmg}.\nGagnez 2\\_PA pour ce tour si la cible est sous l'\xE9tat
+      {#WET}."
+    - "Inflige {damage:dmg}.\nPiochez une carte si la cible est sous l\u2019\xE9tat
+      {#WET}."
+    - "M\xE9andres"
+    - Descent
+    - "Inflige {damage:dmg}.\nVous gagnez {reserve_points:r} si la cible est sous
+      l\u2019\xE9tat {#WET}."
+    - "Pi\xE8ge T\xE9rif"
+    - "Peut \xEAtre invoqu\xE9 \xE0 3\\_cases de votre H\xE9ros.\nConstruisez un {floorMechanism:191}.\nASSEMBLAGE
+      : Votre H\xE9ros gagne BOUCLIER."
+    - "Pi\xE8ge Boueux"
+    - "Peut \xEAtre invoqu\xE9 \xE0 3\\_cases de votre H\xE9ros.\nConstruisez un {floorMechanism:191}.\nASSEMBLAGE
+      : Vous gagnez {earth_points:terre}."
+    - "Inflige {damage:dmg} et applique l'\xE9tat {#MUDDY}."
+    - Sournoiserie
+    - "Inflige {damage:dmg} et applique l'\xE9tat {#MUDDY}."
+    - "Mar\xE9cage"
+    - Inflige {damage:dmg}.
+    - Sanction
+    - "Inflige {damage:d0} <b>OU</b> {damage:d1} si la cible est sous l'\xE9tat {#MUDDY}."
+    - Frappe Macabre
+    - "D\xE9placez l\u2019un de vos m\xE9canismes de 3\\_cases.\nIl inflige ensuite
+      {damage:dmg} autour de lui."
+    - "D\xE9placement M\xE9canique"
+    - Pointe Macabre
+    - "Peut \xEAtre invoqu\xE9e \xE0 3\\_cases de votre H\xE9ros.\nConstruisez une
+      {objectMechanism:227}."
+    - "Inflige {damage:dmg}.\nVous gagnez {reserve_points:r} si la cible est sous
+      l'\xE9tat {#MUDDY}."
+    - Griffe de la Nuit
+    - "Pi\xE8ge Ploz"
+    - "Peut \xEAtre invoqu\xE9 \xE0 3\\_cases de votre H\xE9ros.\nConstruisez un {floorMechanism:191}.\nASSEMBLAGE
+      : D\xE9clenche EXPLOSION."
+    - "Pi\xE8ge Huil\xE9"
+    - "Peut \xEAtre invoqu\xE9 \xE0 3\\_cases de votre H\xE9ros.\nConstruisez un {floorMechanism:191}.\nASSEMBLAGE
+      : Vous gagnez {fire_points:feu}."
+    - "Sixi\xE8me Sens"
+    - "Inflige {damage:dmg} et applique l'\xE9tat {#OILED}."
+    - "Inflige {damage:dmg} et applique l'\xE9tat {#OILED}."
+    - Frappe de la St Valentin
+    - "Inflige {damage:dmg}.\nVos PI\xC8GES d\xE9clenchent {#explosion:ex} <b>({value:ex})</b>."
+    - "Fi\xE8vre Noire"
+    - Midnight Meat Fist
+    - "Inflige {damage:dmg}.\n+2\\_d\xE9g\xE2ts par PI\xC8GES alli\xE9s en jeu."
+    - Badabok
+    - Inflige {damage:dmg}.
+    - Folie
+    - "Inflige {damage:dmg}.\nVotre h\xE9ros se soigne de {heal:h} si la cible est
+      sous l\u2019\xE9tat {#OILED}."
+    - Jusqu'en Enfer
+    - "Inflige {damage:dmg}.\nVotre h\xE9ros se soigne de {heal:h} si la cible est
+      sous l\u2019\xE9tat {#OILED}."
+    - "Inflige {damage:dmg}.\nVous gagnez {reserve_points:r} si la cible est sous
+      l\u2019\xE9tat {#OILED}."
+    - Massacre
+    - "Inflige {damage:dmg}.\nVotre h\xE9ros gagne BOUCLIER si la cible est sous l\u2019\xE9tat
+      {#MUDDY}."
+    - Bouclier Macabre
+    - 'Inflige {damage:dmg}.
+
+      Vous piochez 2 sorts.'
+    - Maniac
+    - Peau d'Ombre
+    - "Votre H\xE9ros devient \xAB\_INCIBLABLE\_\xBB jusqu\u2019au d\xE9but de votre
+      prochain tour.\nSi vous avez ce sort dans votre deck, votre H\xE9ros gagne {heal:pv}
+      au d\xE9but du combat."
+    - "Inflige {damage:d0} <b>OU</b> inflige {damage:d1} si votre h\xE9ros dispose
+      de moins de {heal:h}."
+    - Dernier Chant
+    - Sanglade
+    - "Inflige {damage:dmg} pour chaque PI\xC8GE sur le terrain."
+    - Le Grand Mornifleur
+    - "Si votre r\xE9serve de PA dispose de 10 niveaux, la vide et invoque {summoning:311}."
+    - Passe Muraille
+    - "Pour ce tour, votre h\xE9ros gagne autant de PM que de niveaux dans votre r\xE9serve
+      de PA. Il peut traverser les obstacles et personnages.\nSi vous avez ce sort
+      dans votre deck, votre h\xE9ros gagne {heal:hp} au d\xE9but du combat."
+    - Inflige {damage:dmg} et repousse la cible de {cell:c}.
+    - Corbonade
+    - Inflige {damage:dmg}.
+    - "Fess\xE9e"
+    - Fouetter
+    - "Inflige {damage:dmg} et applique l'\xE9tat {#VENTILATED}."
+    - "Inflige {damage:dmg} et applique l'\xE9tat {#VENTILATED}."
+    - Dominer
+    - Au Pied
+    - 'Inflige {damage:dmg}.
+
+      <b>TROUPEAU\_2\_:</b> Ce sort revient dans votre main.'
+    - 'Inflige {damage:dmg}.
+
+      <b>TROUPEAU\_2\_:</b> Piochez 1 sort.'
+    - Dresser
+    - Soumettre
+    - 'Inflige {damage:dmg}.
+
+      <b>TROUPEAU\_2\_:</b> Piochez 1 sort.'
+    - "Inflige {damage:d0} <b>OU</b> {damage:d1} si la cible est sous l'\xE9tat {#VENTILATED}.\n<b>TROUPEAU\\_2\\_:</b>
+      Ce sort revient dans votre main."
+    - "Inflige {damage:dmg}\n<b>OU</b>\n<b>\xC9LEVAGE</b>."
+    - "Cur\xE9e"
+    - Persiflette
+    - "Inflige {damage:dmg}.\n+{damage:mult} par b\xEAte alli\xE9e en jeu."
+    - Brosser
+    - "Inflige {damage:dmg}\n<b>OU</b>\n<b>\xC9LEVAGE</b>."
+    - Braconner
+    - "Inflige {damage:dmg} et applique l'\xE9tat {#WET}."
+    - "Inflige {damage:dmg}.\nVous gagnez {water_points:w} si la cible est sous l'\xE9tat
+      {#WET}."
+    - Tatouille
+    - Nasarde
+    - "Inflige {damage:dmg} et applique l'\xE9tat {#WET}."
+    - Vetovital
+    - "Soigne une b\xEAte de {heal:h}.\n<b>TROUPEAU\\_2\\_:</b> Vous gagnez 2\\_PA<sprite_name=\"ap\">
+      pour ce tour."
+    - Saillir
+    - 'Inflige {damage:dmg}.
+
+      <b>TROUPEAU\_2\_:</b> Vous gagnez 2\_PA<sprite_name="ap"> pour ce tour.'
+    - Sacrifice Bestial
+    - "Sacrifiez une de vos b\xEAtes pour soigner votre H\xE9ros de {heal:h}."
+    - Oeillade
+    - "Inflige {damage:dmg}\n<b>OU</b>\n<b>\xC9LEVAGE</b>."
+    - "Inflige {damage:dmg}.\n<b>TROUPEAU\\_3\\_:</b> Vous volez {reserve_points:r}
+      \xE0 l'adversaire."
+    - "\xC9lan"
+    - "Ross\xE9e"
+    - "Inflige {damage:dmg}.\nVous gagnez {reserve_points:r} si la cible est sous
+      l'\xE9tat {#WET}."
+    - "Tann\xE9e"
+    - "Inflige {damage:dmg} et applique l'\xE9tat {#MUDDY}\n<b>OU</b>\n<b>\xC9LEVAGE</b>."
+    - "Cuir Renforc\xE9"
+    - "Conf\xE8re {armor:ar} \xE0 une de vos b\xEAtes."
+    - Brimade
+    - "Inflige {damage:dmg} et applique l'\xE9tat {#MUDDY}."
+    - "Peign\xE9e"
+    - Inflige {damage:dmg}.
+    - Brimade
+    - "Inflige {damage:dmg}.\nVous gagnez {earth_points:e} si la cible est sous l'\xE9tat
+      {#MUDDY}."
+    - Rabrouer
+    - "Inflige {damage:dmg}.\n<b>TROUPEAU\\_2\\_:</b> Les b\xEAtes adjacentes \xE0
+      la cible gagnent BOUCLIER."
+    - "Bross\xE9e"
+    - "Vos b\xEAtes gagnent {armor:ar}."
+    - Frappe du Craqueleur
+    - "Inflige {damage:dmg} en zone cercle.\nCe sort revient dans votre main si un
+      personnage touch\xE9 est sous l'\xE9tat {#MUDDY}."
+    - En Chaleur
+    - "Inflige {damage:dmg}\n<b>OU</b>\n<b>\xC9LEVAGE</b>."
+    - Inflige {damage:dmg}.
+    - Rebuffade
+    - Saccade
+    - "Inflige {damage:dmg} et applique l'\xE9tat {#OILED}."
+    - "Inflige {damage:dmg} et applique l'\xE9tat {#OILED}."
+    - Bourrade
+    - Avoiner
+    - 'Inflige {damage:dmg}.
+
+      <b>TROUPEAU\_2\_:</b> Vous gagnez {reserve_points:r}.'
+    - "Inflige {damage:dmg}.\n<b>TROUPEAU\\_2\\_:</b> Vous gagnez 1\\_point dans chacune
+      de vos jauges \xE9l\xE9mentaires si la cible est sous l'\xE9tat {#OILED}."
+    - Traquer
+    - Sillonner
+    - Inflige {damage:dmg}.
+    - Chocotte
+    - "Applique l'\xE9tat {#OILED}\n<b>OU</b>\nInflige {damage:dmg} si la cible est
+      sous l'\xE9tat {#OILED}."
+    - 'Inflige {damage:dmg}.
+
+      <b>TROUPEAU\_2\_:</b> Vous gagnez {reserve_points:r}.'
+    - "B\xE2frer"
+    - Sacrifice Explosif
+    - "Sacrifier une b\xEAte alli\xE9e.\nElle explose et inflige son AT + {damage:dmg}
+      autour d\u2019elle."
+    - Lien Bestial
+    - "\xC9change la position de votre H\xE9ros avec celle d'une b\xEAte alli\xE9e.\nSi
+      vous avez ce sort dans votre deck, votre H\xE9ros gagne {heal:h} au d\xE9but
+      du combat."
+    - Galopade
+    - "Votre H\xE9ros et vos b\xEAtes gagnent 2\\_PM pour ce tour.\nSi vous avez ce
+      sort dans votre Deck, votre H\xE9ros gagne {heal:h} au d\xE9but du combat."
+    - Dragonneur
+    - "Si votre r\xE9serve de PA dispose de 10 niveaux, la vide et invoque {summoning:426}."
+    - "Cr\xE2nes Poison"
+    - "L\u2019adversaire cibl\xE9 gagne gagne 3 CR\xC2NES POISON qui gravitent autour
+      de lui.\nChaque fois qu\u2019il se d\xE9place d\u2019une case, un CR\xC2NE POISON
+      lui inflige {damage:dmg}."
+    - "Inflige {damage:dmg}.\nTROUPEAU\\_3\\_: Les b\xEAtes adjacentes \xE0 la cible
+      d\xE9clenchent une attaque."
+    - Rouste
+    - Dagues Punitives
+    - "Le personnage cibl\xE9 gagne 3 DAGUES PUNITIVES qui gravitent autour de lui.\nChaque
+      fois qu\u2019il subit une attaque physique, une dague inflige {damage:dmg}."
+    - "Votre h\xE9ros gagne un CR\xC2NE REGENERANT qui gravite autour de lui.\nSi
+      un adversaire d\xE9clenche un pi\xE8ge alli\xE9, le CR\xC2NE REGENERANT soigne
+      votre h\xE9ros de {heal:h}."
+    - "Cr\xE2ne R\xE9g\xE9n\xE9rant"
+    - "Cr\xE2nes Motivants"
+    - "Le personnage cibl\xE9 gagne 3 CR\xC2NES MOTIVANTS qui gravitent autour de
+      lui.\nChaque fois qu\u2019il subit une attaque physique, un cr\xE2ne inflige
+      {damage:dmg} et ajoute {reserve_points:r}."
+    - "M\xEAl\xE9e Bestiale"
+    - "Inflige {damage:dmg}.\nTROUPEAU\\_3\\_: Les b\xEAtes adjacentes \xE0 la cible
+      d\xE9clenchent une attaque."
+    - "\xC2mes de Marcassins"
+    - "Votre h\xE9ros gagne 3 \xC2MES DE MARCASSINS qui gravitent autour de lui.\nChaque
+      fois qu\u2019il subit une attaque physique, un marcassin inflige {damage:dmg}
+      avant de dispara\xEEtre."
+    - Reproduction
+    - "Reproduisez la b\xEAte alli\xE9e cibl\xE9e.\nVotre h\xE9ros et la b\xEAte reproduite
+      arrive en jeu avec {armor:ar}."
+    - "Place le premier sort de b\xEAte de votre pioche dans votre main.\nSi vous
+      avez ce sort dans votre Deck, votre h\xE9ros gagne {heal:h} au d\xE9but du combat."
+    - Furetage
+    - "La Mouche Qui P\xE8te"
+    - "La b\xEAte alli\xE9e gagne LA MOUCHE QUI P\xC8TE qui la soigne de {heal:h}
+      et r\xE9duit \xE0 0 les prochains d\xE9g\xE2ts re\xE7us avant de dispara\xEEtre."
+    - "\xC2mes de Corbaks"
+    - "Votre h\xE9ros gagne 3 \xC2MES DE CORBAKS qui gravitent autour de lui.\nChaque
+      fois que votre adversaire joue un sort, un corbak inflige {damage:dmg} au h\xE9ros
+      adverse avant de dispara\xEEtre."
+    - "\xC9p\xE9es Sanglantes"
+    - "Donne \xE0 un personnage alli\xE9 3 <b>\xC9P\xC9ES SANGLANTES</b> qui gravitent
+      autour de lui.\nChaque fois qu\u2019il attaque, une \xE9p\xE9e inflige {damage:dmg}
+      et le soigne de {heal:h} avant de dispara\xEEtre."
+    - Poings Volants
+    - "Donne \xE0 un personnage alli\xE9 4 <b>POINGS VOLANTS</b> qui gravitent autour
+      de lui.\nChaque fois qu\u2019il arrive sur une case adjacente \xE0 un adversaire,
+      un poing inflige {damage:dmg} avant de dispara\xEEtre."
+    - "D\xE9truisez un <b>SINISTRO</b> alli\xE9 pour d\xE9clencher {#EXPLOSION[EXPLOSION\\_({value:dmg})]}.\nVos
+      autres <b>SINISTROS</b> d\xE9clenchent {#EXPLOSION[EXPLOSION\\_({value:ex})]}."
+    - Destructuration
+    - "M\xEAme Pas Mort"
+    - "{#RESURRECTION}\nSi vous avez ce sort dans votre deck, votre h\xE9ros gagne
+      +{heal:h} au d\xE9but du combat."
+    - "Soigne votre h\xE9ros de {heal:h} par <b>SINISTRO</b> alli\xE9 en jeu."
+    - Momification
+    - Sabliers Vengeurs
+    - "Votre h\xE9ros gagne 3 <b>SABLIERS VENGEURS</b> qui gravitent autour de lui.\nChaque
+      fois que le h\xE9ros adverse attaque, un sablier lui inflige {damage:dmg} et
+      vous gagnez {value:r} point de <b>r\xE9serve</b>."
+    - Chibi Cadrans
+    - "Donne \xE0 un personnage alli\xE9 3 <b>CHIBI CADRANS</b> qui gravitent autour
+      de lui.\nChaque fois qu'il subit une attaque physique, un cadran absorbe {damage:dmg}
+      avant de dispara\xEEtre."
+    - Armure Temporelle
+    - "Votre h\xE9ros gagne l'<b>ARMURE TEMPORELLE</b> qui disparait au d\xE9but de
+      son prochain tour.\nVotre h\xE9ros inflige {damage:AT} de plus et renvoie {damage:dmg}
+      \xE0 chaque attaque re\xE7ue."
+    - Sarcophagus
+    - "Si vous avez 10 <b>PA</b> dans votre <b>r\xE9serve</b>, videz la pour invoquer
+      {summoning:825}."
+    - Berger Bouftou
+    - Invoque un {summoning:32}.
+    - Dernier Souffle
+    - Invoque une {summoning:120}.
+    - Destruction de l'Ombre
+    - "D\xE9truisez votre OMBRE et soignez votre H\xE9ros de {heal:h}."
+    - Dernier Pleur
+    - Invoque une {summoning:661}.
+    - "R\xE9pit d'Alibert"
+    - Transfert d'Harebourg
+    - Appel du Corbeau Noir
+    - Amertume de Dark Vlad
+    - "G\xE9n\xE9rosit\xE9 de Goultard"
+    - Souffle de Grougaloragran
+    - Force de Phaeris
+    - "Transf\xE8re vos <b>PA</b> restants vers votre <b>r\xE9serve</b>."
+    - Inflige {damage:dmg} aux personnages dans la <b>zone</b> <sprite name="cell_circle2">.
+    - Piochez 3 sorts.
+    - "Remonte un compagnon dans la main de son propri\xE9taire."
+    - "Donne +{value:at} <b>AT</b> \xE0 un personnage pour le tour."
+    - "Invoquez un {summoning:658} sur une case adjacente \xE0 un alli\xE9.\n{#REWIND}"
+    - '{value:at}\_<b>AT</b> aux invocations adverses pour le tour.'
+    - Cogner
+    - "Inflige {damage:dmg}.\n{#DEATHBLOW}\\_: Votre h\xE9ros gagne +{armor:ar}."
+    - Baiser de la Mort
+    - "Inflige 3 d\xE9g\xE2ts et fait perdre 1 PA de la r\xE9serve du ou des joueurs
+      ayant le plus de PV."
+    - "+{armor:ar} \xE0 votre h\xE9ros.\nVos <b>SINISTROS</b> appliquent {#EXPLOSION[EXPLOSION
+      ({value:ex})]}."
+    - Boom
+  m_versionDictionary:
+    m_keys: fc530000a334000069120000606700007c040000e644010096b8000096750100d5bb00006b8201007c670000cc2e00007ac10000f2550100d96d01007bc20000ae680000417e0100d51c0000a07a010006c10000323200003c8401000d0501001f8e0000d0760100b75b0100142c00004f0f00004146000022360100352501007e920000b065010030790000514d0000a13300001e750100b2c20000e53800008313000070160100dccd000009190100ab080100477a010006d3000036060100c0f8000064460100ff9c000091f10000b06e0100f3190000cc1101008f4100007582010087da0000145a0100ef3b01008cfa0000115f0000d5ff0000f2780100c17b0000e34b000093310100b9c70000390e0000810e000089e4000007270100151d0000353900007ee20000f4f400003fd90000d6400000a76a010021630000cfac0000193401000abd0000bbef00005b15000099bf0000de710000dab600003cf400001d3601007c3701006a1400008c890000d20f01003c15000096d9000096f70000c6b90000db070100ccd4000073610000ce4d000018720100b46e01003de90000e6da00001f820000bfa30000215f0100c95c01002528010062440000bf8401008974010022b300005d3e0000a29e0000d7e1000091fc00007e810000122b00005f990000c9cf0000096901006e7d0100003d000052cf00003e4e000008c60000805401005354010062cd0000c7a50000d8470100745f0100dade00006229000062810100f078000037e2000093420100c8c700008b220100580e010008ac000062020000d78f0000558c0000c1240100fc730000c3790000e4e90000b80701001e620000db840000f767000027070000c4460000bd9d0000bb35010012840100f27c00002a7d0000b4e4000004fb00001b83000016640000fd030100468301004f8b0000c9f00000e5820000e47f00006b130000315b000044120000283d00003b830000b237010033380000ef91000049770100df130100e4c70000807101004a9d0000847d0000792b0000b98e00008a120000b2ac0000cf210100db0500009d6e010087170100930201005b580100f1f2000072910000e14301006e79000027d700009c710000e2160100056f0000ce020000f6020100987e0100875a0100391f0100212f0100bb09000081d20000a179010059b100008633000095640100838b0000e1250000e67a0000d2f1000008690100cf68010041ed000019390000667b0100135f01007e230000379e00000b9300009b2400005340010056cf00008c2e00004a7900005b640000933d0000f0e9000016b10000475900006b3c0100a74900006dbe0000f6760000d4a0000046fd0000ec7f01001347010058fd00006a9200005006000094f10000df28000018110100fa58010044b70000894d0000b7670100ae6e0100ab2e000021a60000a68500008861010044af00001949010028b100004ebb000086d10000930c0100ac3d01003ec10000eb4c0000728a00001512010048bb0000331a00005c5301004ad70000aeb90000ab3e0100b15c000083520100d21f01002922000093900000d3800000694a0000f0160100c17c0000abad0000b14a0000230f0000e7930000f7ac0000962400000c110100801100005b570000046a0000e90d00002a6201002e310000178a00003bc3000083210000a1c7000012c400006a6c0000fe3d01000c010100c62c0000cee70000322f01005d28000032c90000a1c10000cd0101003715000027fc000039a20000c67d0000df480100092b010039030000f1c60000fc2c000031700000695700000580000045110100f10e00008ea8000050900000c4b800001bea00001f21010004120000e93b00005bb900005e2e0000fc610100fb3e0100f56401006821010044520000edaa00000d9300005460010081ab0000256f00009ccb00000607010041b60000821a00005ff300007f1e0000b32b0000c56f0000322901006c7a0000bf7b010040c600002d2c0100c7aa00004c38010090ac0000793d0100d9330000f2f00000ce41000025530000493e0000675400008b020000e84a0000f8120000bd6301009847010093930000d80d01006e6b000032670000be120000655000004d39010082ad00009d3b0100947e0100877100005b860000c39e0000e93f00008bed0000f25c0100f2830100a1ff00002d7500004f8a0000a7df0000d0c5000082380100f0690000eba400002319010097330000fc3401000d660000ee4f000017da000030750100793c000090c20000ec6f01002d300100d142000035c400005bd5000099bb0000eaad0000dba100009e2c01005c8f0000b09e00006b6001008d720000dc380100879400007faf00004e4a00003d0a01006e0a0000fa5e00000a21000076190000dda300001c6001001c8600005c010100d3590000bf92000033b70000059d0000f75000001df00000c9030000d9f300008a96000076e9000061490100811d0000bc4200007a670000c9aa0000fc6a010062ea0000c91c0000590d0000b8b80000d5aa0000a94b010012ac0000f1f00000b2eb0000f7ef00007e940000f06d010033470000aa070000f21b0100e8ca000089200000e5420100c2770000a9cf00001ed60000982500007e7000008be900005d1b010093eb0000280e01003b8f00006f19010006210000fa61010089840000f50201003f42010057210000f33401003da000001233010034a300007b020100fa0b000084b7000081b20000ffc00000c71b0100c1b4000098170100d8d100002de10000f3f60000029800005c7701003d7500004f6d0100041a0100b99c000090100100be380000fc280100d66300004fc700007ae400008dc70000eba60000b30d0100adef000057cf00005d270100f5050000b2590000a3450000cb2e000011780100825d0100013f0000aa1c000037a80000bd070100cfa00000cc0801007c4601004a8d00002b2a00003e550100994201005486000016bc000051a40000433c0100f99000008c000000a6f00000a44f0000f27c0100238f000017790000d1c000002feb0000ecfa0000e6830100f04c0100108a000076eb0000ed970000e14a00009efe0000fc490100d90d00004d9000007cc900000d5f0100213a000081460100836b0000d15800006e840000750d0100a1540100e838000079710100d53d00009f450000a60e01003b3c0100cb2901002ef8000068ed0000a69600005ee3000053eb00001f4701007c8b0000e8c600004c930000932d000087ec0000ef050000f8c8000026e50000795400006a6b01006a2b0100ad3e00000c9e0000791000007bf1000012b60000d4580000232a0000f4c90000931701006a120100b76e000014670100c7420000332201005afc0000bf05000081320000fc3e010036c70000914600002c540000e6b700003de800002e740000442c00003c670000636b0000066a0100e7bb000037fa0000ed5e0100f72e000091b60000a48f0000e31301000d65000007a60000b7c40000a15400008944000098db00001572000004780100b8660100b53a00009560010069db0000ca510000d77e01002e2f0100cc4a0000a79a0000c41b0100768500009e8201002f1401002ced0000990b0100217e0100d87301001c63000085f700004d8b0000dcbd0000b6030000a4080100bc6801005b800000a54f000092650000f0130000b9a00000a96c0100b16000000c6400000b8d0000f193000082250100fc11010035b4000074770100ef140000c42c0100ae660100dca600004b080000d82d0100d2830000166f0100c0a30000c863010062b000002a970000d0a60000052a0000ddb90000455d00006619000008da0000855b0100034a01003f7f0100380a0100046500000d4b01004a0f01003e6101007a480000a4ae0000c8610000dd7b0000b397000056210100252f0000c2490100d635000022d10000e0640100bbb70000da560000c7a10000e1d70000f94f0000ff29010047dc00008d270100b86c000091e700007f27000092450000f2c40000bc6c01006d4e0000c19b000063a7000002b100005b4200006fb2000056df000013830000774f010024520000a9ba0000c6120000f1ba00003101010020290100e0f40000a5ca0000347a010006450000464501009c35000038f800009a7c00000bbb0000aca30000c73f000037820100340f01008faa0000a67601005bad00003f1301006eea00006ce600005c3f000067800000517c0100303b00003f6301006a4701007827010058ec0000b31a000003310000e1490100388300005dab000029cc0000a13d0000fd3000000b0f000083960000eccb0000be840100964400006b130100bed30000026e010048230000a2f300009317000002ae0000d1340100293200006e7a0100fab50000d39100003458010007220000a9550100422d01005c6401006c2700001f720000a5740000aab8000028eb0000a60501000c900000fec80000027b0100807e00000de50000
+    m_values: 000000000000000000000000000000000000000000000000010000000300000000000000000000000000000000000000000000000000000001000000050000000100000002000000010000000200000001000000020000000100000002000000010000000200000001000000020000000100000002000000010000000200000001000000020000000100000003000000010000000300000001000000040000000100000001000000010000000300000001000000030000000100000003000000010000000300000001000000030000000100000003000000010000000300000001000000030000000100000003000000010000000100000001000000020000000200000007000000010000000c0000000200000008000000030000000800000002000000070000000100000005000000010000000a000000010000000a000000010000000c000000010000000c00000003000000040000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000010000000c00000001000000010000000100000008000000010000000600000001000000130000000100000007000000010000000a00000001000000050000000300000008000000010000001900000001000000080000000100000008000000030000000a0000000300000014000000010000001700000004000000160000000100000005000000010000000c0000000100000011000000010000001000000003000000070000000100000005000000040000001900000003000000030000000100000001000000010000000100000001000000020000000100000001000000030000000300000001000000020000000100000001000000010000000200000001000000020000000100000002000000010000000100000001000000010000000100000002000000030000000300000001000000040000000200000009000000010000000100000017000000010000000800000002000000010000000100000018000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000002000000020000000100000001000000010000000100000001000000010000000100000002000000010000000100000001000000010000000100000001000000010000000500000002000000030000000800000001000000070000000800000001000000050000000100000003000000120000000100000001000000020000000800000001000000080000000a000000010000000100000001000000010000000100000006000000020000000b000000010000000a0000000100000008000000020000000f000000010000001000000002000000020000000100000003000000010000000600000002000000010000000b0000000c000000010000000e00000001000000010000000100000006000000010000000500000001000000030000000f00000007000000010000000a000000010000000900000001000000070000000100000001000000040000000600000001000000010000000a000000080000000100000001000000050000000900000001000000060000000100000002000000010000000b0000000100000008000000010000000800000001000000010000000b0000000800000001000000010000000a0000000100000007000000010000000e00000007000000010000000e0000000300000008000000010000000300000001000000080000000100000008000000010000000b0000000100000004000000010000000600000001000000010000000100000002000000060000000100000007000000020000000800000001000000050000000b00000001000000010000000200000009000000010000000a00000002000000010000000a000000010000001300000001000000110000000e0000000100000001000000060000000b0000000100000009000000020000000c000000010000000c0000000100000001000000090000000100000007000000030000000100000001000000010000000e00000001000000060000000300000006000000010000000a000000010000000100000008000000030000000c000000060000000200000002000000010000000100000002000000020000000d0000000900000002000000040000000700000001000000080000000f00000003000000060000000200000002000000070000000100000008000000010000001400000002000000020000000e000000070000000200000006000000010000000100000001000000010000000100000001000000010000000100000001000000040000000200000008000000030000000700000003000000040000000b000000020000000300000001000000010000000100000001000000010000000100000001000000010000000100000002000000010000000a00000003000000020000000e000000040000000100000005000000010000000d00000001000000040000000100000002000000010000000500000002000000010000000200000002000000060000000200000003000000010000000200000009000000050000000100000002000000010000000300000001000000070000000100000007000000010000000300000001000000020000000100000002000000010000000300000003000000010000000100000001000000010000000a00000001000000030000000100000004000000010000000400000001000000050000000100000003000000010000000400000005000000010000000100000004000000010000000100000001000000070000000100000003000000010000000200000006000000010000000100000003000000010000000300000004000000010000000100000005000000050000000100000001000000070000000400000001000000010000000500000001000000010000000200000001000000010000000100000003000000010000000200000001000000010000000100000001000000020000000200000001000000010000000200000002000000010000000100000001000000010000000100000001000000010000000300000001000000010000000100000001000000010000000100000002000000010000000100000001000000020000000100000001000000010000000100000001000000010000000100000001000000030000000100000002000000020000000200000001000000010000000100000001000000020000000100000001000000020000000100000003000000010000000100000001000000010000000100000001000000010000000100000001000000020000000100000001000000020000000100000001000000010000000300000001000000010000000100000001000000010000000300000001000000030000000100000001000000010000000100000001000000010000000100000001000000020000000100000001000000010000000100000001000000020000000300000001000000010000000100000001000000020000000100000001000000010000000100000001000000010000000100000003000000010000000200000001000000010000000100000002000000020000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000020000000100000001000000010000000100000001000000010000000100000002000000020000000100000001000000010000000100000001000000020000000100000001000000010000000100000002000000010000000100000001000000020000000100000005000000010000000100000001000000020000000100000002000000010000000300000001000000010000000100000002000000010000000100000002000000010000000100000002000000010000000100000001000000050000000100000004000000050000000100000001000000050000000300000001000000010000000500000001000000030000000100000003000000010000000500000003000000020000000200000004000000010000000100000002000000010000000100000003000000010000000100000001000000010000000100000006000000030000000100000001000000040000000400000003000000010000000300000001000000010000000400000001000000
