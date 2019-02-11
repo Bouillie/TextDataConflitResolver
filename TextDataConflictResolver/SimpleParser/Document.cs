@@ -26,8 +26,7 @@ namespace TextDataConflictResolver.SimpleParser
         
         private string m_versionDictionaryKeys;
         private Line m_versionDictionaryKeysLine;
-        private string m_versionDictionaryValues;
-        private Line m_versionDictionaryValuesLine;
+        private Block m_versionDictionaryValuesBlock;
 
         public Document(string[] mTextKeyDictionaryName, string[] mVersionDictionaryName)
         {
@@ -68,14 +67,13 @@ namespace TextDataConflictResolver.SimpleParser
             }
         }
         
-        public string VersionDictionaryValues
+        public List<Line> VersionDictionaryValues
         {
-            get { return m_versionDictionaryValues;}
-            set { 
-                m_versionDictionaryValues = value; 
-                string s = m_versionDictionaryValuesLine.Value;
-                string replacement = m_keysRegex.Replace(s, "$1") + value;
-                m_versionDictionaryValuesLine.SetValue(replacement);
+            get { return m_versionDictionaryValuesBlock.Lines;}
+            set
+            {
+                if (m_versionDictionaryValuesBlock == null) return;   
+                m_versionDictionaryValuesBlock.Lines = value;
             }
         }
 
@@ -159,6 +157,19 @@ namespace TextDataConflictResolver.SimpleParser
                     line = reader.ReadLine();
                     currentBlock = m_textDictionaryValuesBlock = NewBlock(currentBlock);
                 }
+                else if (state == State.ParsingVersionKeys)
+                {
+                    Match match = m_keysRegex.Match(line);
+                    GroupCollection groups = match.Groups;
+                    m_versionDictionaryKeys = groups[2].Value;
+                    state = State.ParsingTextValues;
+                    m_versionDictionaryKeysLine = new Line(line);
+                    currentBlock.Lines.Add(m_versionDictionaryKeysLine);
+                    line = reader.ReadLine(); // m_values:
+                    currentBlock.Lines.Add(new Line(line));
+                    line = reader.ReadLine();
+                    currentBlock = m_versionDictionaryValuesBlock = NewBlock(currentBlock);
+                }
                 else if (state == State.ParsingTextValues)
                 {
                     if (depth <= dictionaryDepth && !isInEscape)
@@ -192,35 +203,35 @@ namespace TextDataConflictResolver.SimpleParser
                         line = reader.ReadLine();
                     }
                 }
-                else if (state == State.ParsingVersionKeys)
-                {
-                    Match match = m_keysRegex.Match(line);
-                    GroupCollection groups = match.Groups;
-                    m_versionDictionaryKeys = groups[2].Value;
-                    m_versionDictionaryKeysLine = new Line(line);
-                    currentBlock.Lines.Add(m_versionDictionaryKeysLine);
-                    state = State.ParsingVersionValues;
-                    line = reader.ReadLine();
-                }
-                else if (state == State.ParsingVersionValues)
-                {
-                    if (depth <= dictionaryDepth)
-                    {
-                        state = State.ParsingRaw;
-                        currentBlock = NewBlock(currentBlock);
-                    }
-                    else
-                    {
-                        Match match = m_keysRegex.Match(line);
-                        GroupCollection groups = match.Groups;
-                        m_versionDictionaryValues = groups[2].Value;
-                        m_versionDictionaryValuesLine = new Line(line);
-                        currentBlock.Lines.Add(m_versionDictionaryValuesLine);
-                        state = State.ParsingRaw;
-                        currentBlock = NewBlock(currentBlock);
-                        line = reader.ReadLine();
-                    }
-                }
+//                else if (state == State.ParsingVersionKeys)
+//                {
+//                    Match match = m_keysRegex.Match(line);
+//                    GroupCollection groups = match.Groups;
+//                    m_versionDictionaryKeys = groups[2].Value;
+//                    m_versionDictionaryKeysLine = new Line(line);
+//                    currentBlock.Lines.Add(m_versionDictionaryKeysLine);
+//                    state = State.ParsingVersionValues;
+//                    line = reader.ReadLine();
+//                }
+//                else if (state == State.ParsingVersionValues)
+//                {
+//                    if (depth <= dictionaryDepth)
+//                    {
+//                        state = State.ParsingRaw;
+//                        currentBlock = NewBlock(currentBlock);
+//                    }
+//                    else
+//                    {
+//                        Match match = m_keysRegex.Match(line);
+//                        GroupCollection groups = match.Groups;
+//                        m_versionDictionaryValues = groups[2].Value;
+//                        m_versionDictionaryValuesLine = new Line(line);
+//                        currentBlock.Lines.Add(m_versionDictionaryValuesLine);
+//                        state = State.ParsingRaw;
+//                        currentBlock = NewBlock(currentBlock);
+//                        line = reader.ReadLine();
+//                    }
+//                }
 
 
             }

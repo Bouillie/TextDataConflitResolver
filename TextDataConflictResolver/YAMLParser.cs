@@ -12,19 +12,19 @@ namespace TextDataConflictResolver
     public class Data
     {
         public SortedListDictionary<int, Line> textKeyDictionary = new SortedListDictionary<int, Line>();
-        public SortedListDictionary<int, int> versionDictionary = new SortedListDictionary<int, int>();
+        public SortedListDictionary<int, Line> versionDictionary = new SortedListDictionary<int, Line>();
     }
 
     public class Modifications
     {
         public Dictionary<int, Operation<int, Line>> textKeyOperations = new Dictionary<int, Operation<int, Line>>();
-        public Dictionary<int, Operation<int, int>> versionOperations = new Dictionary<int, Operation<int, int>>();
+        public Dictionary<int, Operation<int, Line>> versionOperations = new Dictionary<int, Operation<int, Line>>();
     }
 
     public class ModificationResult
     {
         public List<Operation<int, Line>> textKeyOperations = new List<Operation<int, Line>>();
-        public List<Operation<int, int>> versionOperations = new List<Operation<int, int>>();
+        public List<Operation<int, Line>> versionOperations = new List<Operation<int, Line>>();
 
         public List<Tuple<Operation, Operation>> m_invalidOperations = new List<Tuple<Operation, Operation>>();
 
@@ -46,7 +46,7 @@ namespace TextDataConflictResolver
                 }
             }
 
-            foreach (Operation<int, int> operations in versionOperations)
+            foreach (Operation<int, Line> operations in versionOperations)
             {
                 switch (operations.OperationType)
                 {
@@ -132,9 +132,9 @@ namespace TextDataConflictResolver
 
             if (destinationPath != null)
             {
-                string fileName = Path.GetFileNameWithoutExtension(destinationPath);
+                string fileName = Path.GetFileNameWithoutExtension(pathSource);
                 string directoryName = Path.GetDirectoryName(destinationPath) ?? "";
-                string extension = Path.GetExtension(destinationPath);
+                string extension = Path.GetExtension(pathSource);
                 
                 string now = DateTime.Now.ToString("s").Replace(':', '-');
                 string pathABackup = Path.Combine(directoryName,  $"{fileName}_LOCAL_{now}{extension}");
@@ -161,8 +161,7 @@ namespace TextDataConflictResolver
                             "m_dataDictionary",
                         };
                         string[] versionsNames = {
-                            "m_versionDictionary",
-                            "m_textVersionDictionary",
+                            "m_editorInfoDictionary",
                         };
 
                         yamlSource = new Document(textNames, versionsNames);
@@ -222,9 +221,9 @@ namespace TextDataConflictResolver
                     result.textKeyOperations.Add(operation.Value);
                 }
             }
-            foreach (KeyValuePair<int,Operation<int,int>> operation in a.versionOperations)
+            foreach (KeyValuePair<int,Operation<int,Line>> operation in a.versionOperations)
             {
-                if (b.versionOperations.TryGetValue(operation.Key, out Operation<int, int> op2))
+                if (b.versionOperations.TryGetValue(operation.Key, out Operation<int, Line> op2))
                 {
                     result.m_invalidOperations.Add(new Tuple<Operation, Operation>(operation.Value, op2));
                 }
@@ -240,9 +239,9 @@ namespace TextDataConflictResolver
                     result.textKeyOperations.Add(operation.Value);
                 }
             }
-            foreach (KeyValuePair<int,Operation<int,int>> operation in b.versionOperations)
+            foreach (KeyValuePair<int,Operation<int,Line>> operation in b.versionOperations)
             {
-                if (!a.versionOperations.TryGetValue(operation.Key, out Operation<int, int> op2))
+                if (!a.versionOperations.TryGetValue(operation.Key, out Operation<int, Line> op2))
                 {
                     result.versionOperations.Add(operation.Value);
                 }
@@ -275,25 +274,25 @@ namespace TextDataConflictResolver
                     modifications.textKeyOperations.Add(pair.Key, new Operation<int, Line>(pair.Key, pair.Value, OperationType.ADDITION));
                 }
             }
-            foreach (KeyValuePair<int,int> pair in source.versionDictionary)
+            foreach (KeyValuePair<int,Line> pair in source.versionDictionary)
             {
-                if (modif.versionDictionary.TryGetValue(pair.Key, out int value))
+                if (modif.versionDictionary.TryGetValue(pair.Key, out Line value))
                 {
-                    if (value != pair.Value)
+                    if (!string.Equals(value.ScalarValue, pair.Value.ScalarValue))
                     {
-                        modifications.versionOperations.Add(pair.Key, new Operation<int, int>(pair.Key, value, OperationType.MODIFICATION));
+                        modifications.versionOperations.Add(pair.Key, new Operation<int, Line>(pair.Key, value, OperationType.MODIFICATION));
                     }
                 }
                 else
                 {
-                    modifications.versionOperations.Add(pair.Key, new Operation<int, int>(pair.Key, 0, OperationType.REMOVAL));
+                    modifications.versionOperations.Add(pair.Key, new Operation<int, Line>(pair.Key, null, OperationType.REMOVAL));
                 }
             }
-            foreach (KeyValuePair<int,int> pair in modif.versionDictionary)
+            foreach (KeyValuePair<int,Line> pair in modif.versionDictionary)
             {
                 if (!source.versionDictionary.Contains(pair.Key))
                 {
-                    modifications.versionOperations.Add(pair.Key, new Operation<int, int>(pair.Key, pair.Value, OperationType.ADDITION));
+                    modifications.versionOperations.Add(pair.Key, new Operation<int, Line>(pair.Key, pair.Value, OperationType.ADDITION));
                 }
             }
 
@@ -319,27 +318,26 @@ namespace TextDataConflictResolver
         private void ParseVersionDictionary(Document document, Data data)
         {
             int[] keys = ParseSerializedIntArray(document.VersionDictionaryKeys);
-            int[] values = ParseSerializedIntArray(document.VersionDictionaryValues);
-            
-            for (int i = 0, count = keys.Length; i < count; ++i) 
+            int index = 0;
+            foreach (Line value in document.VersionDictionaryValues)
             {
-                data.versionDictionary.Add(keys[i], values[i]);
+                data.versionDictionary.Add(keys[index++], value);
             }
         }
         
         private void WriteVersionDictionary(Document document, Data data)
         {
+            List<Line> lines = new List<Line>();
             StringBuilder keysBuilder = new StringBuilder();
-            StringBuilder valuesBuilder = new StringBuilder();
 
-            foreach (KeyValuePair<int, int> pair in data.versionDictionary)
+            foreach (KeyValuePair<int, Line> pair in data.versionDictionary)
             {
                 keysBuilder.Append(ReverseHexString(pair.Key.ToString("x8")));
-                valuesBuilder.Append(ReverseHexString(pair.Value.ToString("x8")));
+                lines.Add(pair.Value);
             }
 
             document.VersionDictionaryKeys = keysBuilder.ToString();
-            document.VersionDictionaryValues = valuesBuilder.ToString();
+            document.VersionDictionaryValues = lines;
         }
         
         private void ParseTextKeyDictionary(Document document, Data data)
