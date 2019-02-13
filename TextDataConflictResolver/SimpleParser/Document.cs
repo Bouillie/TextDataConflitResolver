@@ -28,6 +28,12 @@ namespace TextDataConflictResolver.SimpleParser
         private Line m_versionDictionaryKeysLine;
         private Block m_versionDictionaryValuesBlock;
 
+        private bool m_hasTextDictionary;
+        private bool m_hasVersionDictionary;
+
+        public bool HasTextDictionary => m_hasTextDictionary;
+        public bool HasVersionDictionary => m_hasVersionDictionary;
+        
         public Document(string[] mTextKeyDictionaryName, string[] mVersionDictionaryName)
         {
             m_textKeyDictionaryName = mTextKeyDictionaryName;
@@ -146,6 +152,7 @@ namespace TextDataConflictResolver.SimpleParser
                 } 
                 else if (state == State.ParsingTextKeys)
                 {
+                    m_hasTextDictionary = true;
                     Match match = m_keysRegex.Match(line);
                     GroupCollection groups = match.Groups;
                     m_textDictionaryKeys = groups[2].Value;
@@ -159,6 +166,7 @@ namespace TextDataConflictResolver.SimpleParser
                 }
                 else if (state == State.ParsingVersionKeys)
                 {
+                    m_hasVersionDictionary = true;
                     Match match = m_keysRegex.Match(line);
                     GroupCollection groups = match.Groups;
                     m_versionDictionaryKeys = groups[2].Value;

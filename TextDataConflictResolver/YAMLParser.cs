@@ -302,15 +302,15 @@ namespace TextDataConflictResolver
         
         private void WriteDocument(Document document, Data data)
         {
-            WriteTextKeyDictionary(document, data);
-            WriteVersionDictionary(document, data);
+            if (document.HasTextDictionary) WriteTextKeyDictionary(document, data);
+            if (document.HasVersionDictionary) WriteVersionDictionary(document, data);
         }
         
         private Data ParseDocument(Document document)
         {
             Data data = new Data();
-            ParseTextKeyDictionary(document, data);
-            ParseVersionDictionary(document, data);
+            if (document.HasTextDictionary) ParseTextKeyDictionary(document, data);
+            if (document.HasVersionDictionary) ParseVersionDictionary(document, data);
 
             return data;
         }
