@@ -132,18 +132,17 @@ namespace TextDataConflictResolver
 
             if (destinationPath != null)
             {
-                string fileName = Path.GetFileNameWithoutExtension(pathSource);
                 string directoryName = Path.GetDirectoryName(destinationPath) ?? "";
-                string extension = Path.GetExtension(pathSource);
+
+                string guid = Guid.NewGuid().ToString();
+
+                string pathABackup = Path.Combine(directoryName,  $"{guid}_LOCAL");
+                string pathBBackup = Path.Combine(directoryName,  $"{guid}_REMOTE");
+                string pathSourceBackup = Path.Combine(directoryName,  $"{guid}_BASE");
                 
-                string now = DateTime.Now.ToString("s").Replace(':', '-');
-                string pathABackup = Path.Combine(directoryName,  $"{fileName}_LOCAL_{now}{extension}");
-                string pathBBackup = Path.Combine(directoryName,  $"{fileName}_REMOTE_{now}{extension}");
-                string pathSourceBackup = Path.Combine(directoryName,  $"{fileName}_BASE_{now}{extension}");
-                
-                File.Copy(pathA, pathABackup);
-                File.Copy(pathB, pathBBackup);
-                File.Copy(pathSource, pathSourceBackup);
+                File.Copy(pathA, pathABackup, true);
+                File.Copy(pathB, pathBBackup, true);
+                File.Copy(pathSource, pathSourceBackup, true);
             }
             
             using (FileStream fs = File.Open(pathSource, FileMode.Open, FileAccess.Read, FileShare.Read))
