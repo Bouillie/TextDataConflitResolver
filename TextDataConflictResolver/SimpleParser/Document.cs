@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text.RegularExpressions;
@@ -10,7 +11,8 @@ namespace TextDataConflictResolver.SimpleParser
         ParsingTextKeys,
         ParsingTextValues,
         ParsingVersionKeys,
-        ParsingVersionValues,
+        ParsingVersionValuesVersion,
+        ParsingVersionValuesComment,
     }
     
     public class Document
@@ -170,7 +172,7 @@ namespace TextDataConflictResolver.SimpleParser
                     Match match = m_keysRegex.Match(line);
                     GroupCollection groups = match.Groups;
                     m_versionDictionaryKeys = groups[2].Value;
-                    state = State.ParsingTextValues;
+                    state = State.ParsingVersionValuesVersion;
                     m_versionDictionaryKeysLine = new Line(line);
                     currentBlock.Lines.Add(m_versionDictionaryKeysLine);
                     line = reader.ReadLine(); // m_values:
@@ -211,35 +213,49 @@ namespace TextDataConflictResolver.SimpleParser
                         line = reader.ReadLine();
                     }
                 }
-//                else if (state == State.ParsingVersionKeys)
-//                {
-//                    Match match = m_keysRegex.Match(line);
-//                    GroupCollection groups = match.Groups;
-//                    m_versionDictionaryKeys = groups[2].Value;
-//                    m_versionDictionaryKeysLine = new Line(line);
-//                    currentBlock.Lines.Add(m_versionDictionaryKeysLine);
-//                    state = State.ParsingVersionValues;
-//                    line = reader.ReadLine();
-//                }
-//                else if (state == State.ParsingVersionValues)
-//                {
-//                    if (depth <= dictionaryDepth)
-//                    {
-//                        state = State.ParsingRaw;
-//                        currentBlock = NewBlock(currentBlock);
-//                    }
-//                    else
-//                    {
-//                        Match match = m_keysRegex.Match(line);
-//                        GroupCollection groups = match.Groups;
-//                        m_versionDictionaryValues = groups[2].Value;
-//                        m_versionDictionaryValuesLine = new Line(line);
-//                        currentBlock.Lines.Add(m_versionDictionaryValuesLine);
-//                        state = State.ParsingRaw;
-//                        currentBlock = NewBlock(currentBlock);
-//                        line = reader.ReadLine();
-//                    }
-//                }
+                else if (state == State.ParsingVersionValuesVersion)
+                {
+                    if (depth <= dictionaryDepth && !isInEscape)
+                    {
+                        state = State.ParsingRaw;
+                        currentBlock = NewBlock(currentBlock);
+                    }
+                    else
+                    {
+                        state = State.ParsingVersionValuesComment;
+                        Line l = new Line(line);
+                        l.SetScalarDepth(depth + 2);
+                        currentBlock.Lines.Add(l);                        
+                        line = reader.ReadLine();
+                    }
+                } 
+                else if (state == State.ParsingVersionValuesComment)
+                {
+                    List<Line> lines = currentBlock.Lines;
+                    Line l = lines[lines.Count - 1];
+                    l.AppendValue(line);
+
+                    if (!isInEscape) /* if (line.TrimStart(' ').StartsWith("comment: ")) */ // Always true is the file is correctly formatted
+                    {
+                        const int delta = 9; // = "comment: ".Length
+                        int escapeCharIndex = depth + delta;
+                        currentEscapeChar = line.Length > escapeCharIndex ? line[escapeCharIndex] : (char) 0;
+                        isInEscape = currentEscapeChar == '\'' || currentEscapeChar == '"';
+                    }
+                    
+                    if (isInEscape && line.EndsWith(currentEscapeChar.ToString())) // Can happen on the first line
+                    {
+                        currentEscapeChar = (char) 0;
+                        isInEscape = false;
+                    }
+
+                    if (!isInEscape)
+                    {
+                        state = State.ParsingVersionValuesVersion;
+                    }
+                    
+                    line = reader.ReadLine();
+                }
 
 
             }
