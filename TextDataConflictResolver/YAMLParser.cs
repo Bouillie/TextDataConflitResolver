@@ -8,7 +8,6 @@ using TextDataConflictResolver.Utils;
 
 namespace TextDataConflictResolver
 {
-    
     public class Data
     {
         public SortedListDictionary<int, Line> textKeyDictionary = new SortedListDictionary<int, Line>();
@@ -67,7 +66,7 @@ namespace TextDataConflictResolver
         {
             if (m_invalidOperations.Count == 0)
                 return string.Empty;
-            
+
             StringBuilder a = new StringBuilder();
             StringBuilder b = new StringBuilder();
 
@@ -78,6 +77,7 @@ namespace TextDataConflictResolver
                     a.Append("\n");
                     b.Append("\n");
                 }
+
                 Tuple<Operation, Operation> pair = m_invalidOperations[index];
                 a.Append(pair.Item1);
                 b.Append(pair.Item2);
@@ -92,7 +92,7 @@ namespace TextDataConflictResolver
             return result.ToString();
         }
     }
-    
+
     public enum OperationType
     {
         ADDITION,
@@ -100,9 +100,11 @@ namespace TextDataConflictResolver
         REMOVAL,
     }
 
-    public abstract class Operation {}
-    
-    public class Operation<T, U>: Operation
+    public abstract class Operation
+    {
+    }
+
+    public class Operation<T, U> : Operation
     {
         public Operation(T key, U value, OperationType operationType)
         {
@@ -119,11 +121,35 @@ namespace TextDataConflictResolver
         {
             return $"{OperationType}: {Key} => {Value}";
         }
+
+        protected bool Equals(Operation<T, U> other)
+        {
+            return OperationType == other.OperationType && EqualityComparer<T>.Default.Equals(Key, other.Key) &&
+                   EqualityComparer<U>.Default.Equals(Value, other.Value);
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (ReferenceEquals(null, obj)) return false;
+            if (ReferenceEquals(this, obj)) return true;
+            if (obj.GetType() != this.GetType()) return false;
+            return Equals((Operation<T, U>) obj);
+        }
+
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                var hashCode = (int) OperationType;
+                hashCode = (hashCode * 397) ^ EqualityComparer<T>.Default.GetHashCode(Key);
+                hashCode = (hashCode * 397) ^ EqualityComparer<U>.Default.GetHashCode(Value);
+                return hashCode;
+            }
+        }
     }
-  
+
     public class YAMLParser
     {
-
         public bool Parse(string pathSource, string pathA, string pathB, string destinationPath)
         {
             Document yamlSource;
@@ -136,15 +162,15 @@ namespace TextDataConflictResolver
 
                 string guid = Guid.NewGuid().ToString();
 
-                string pathABackup = Path.Combine(directoryName,  $"{guid}_LOCAL");
-                string pathBBackup = Path.Combine(directoryName,  $"{guid}_REMOTE");
-                string pathSourceBackup = Path.Combine(directoryName,  $"{guid}_BASE");
-                
+                string pathABackup = Path.Combine(directoryName, $"{guid}_LOCAL");
+                string pathBBackup = Path.Combine(directoryName, $"{guid}_REMOTE");
+                string pathSourceBackup = Path.Combine(directoryName, $"{guid}_BASE");
+
                 File.Copy(pathA, pathABackup, true);
                 File.Copy(pathB, pathBBackup, true);
                 File.Copy(pathSource, pathSourceBackup, true);
             }
-            
+
             using (FileStream fs = File.Open(pathSource, FileMode.Open, FileAccess.Read, FileShare.Read))
             {
                 using (FileStream fsa = File.Open(pathA, FileMode.Open, FileAccess.Read, FileShare.Read))
@@ -155,11 +181,13 @@ namespace TextDataConflictResolver
                         StreamReader streamReaderA = new StreamReader(fsa, Encoding.UTF8);
                         StreamReader streamReaderB = new StreamReader(fsb, Encoding.UTF8);
 
-                        string[] textNames = {
+                        string[] textNames =
+                        {
                             "m_textKeyDictionary",
                             "m_dataDictionary",
                         };
-                        string[] versionsNames = {
+                        string[] versionsNames =
+                        {
                             "m_editorInfoDictionary",
                         };
 
@@ -173,25 +201,25 @@ namespace TextDataConflictResolver
                         Document yamlSourceB = new Document(textNames, versionsNames);
                         yamlSourceB.Parse(streamReaderB);
                         Data bData = ParseDocument(yamlSourceB);
-            
+
                         Modifications aModifications = GenerateDiffs(sourceData, aData);
                         Modifications bModifications = GenerateDiffs(sourceData, bData);
-                        
+
                         modificationResult = ComputeResults(aModifications, bModifications);
                         modificationResult.Apply(sourceData);
-                        
+
                         WriteDocument(yamlSource, sourceData);
                     }
                 }
             }
-            
+
             File.Delete(pathA);
-            
+
             using (FileStream fs2 = File.Open(pathA, FileMode.OpenOrCreate, FileAccess.Write,
                 FileShare.None))
             {
                 bool success = true;
-                StreamWriter output = new StreamWriter(fs2, new UTF8Encoding(false)) { NewLine = "\n" };
+                StreamWriter output = new StreamWriter(fs2, new UTF8Encoding(false)) {NewLine = "\n"};
                 yamlSource.Save(output);
                 string errors = modificationResult.Errors();
                 if (!string.IsNullOrWhiteSpace(errors))
@@ -199,112 +227,143 @@ namespace TextDataConflictResolver
                     output.WriteLine(errors);
                     success = false;
                 }
+
                 output.Flush();
-                
+
                 return success;
             }
         }
 
-        
+
         public ModificationResult ComputeResults(Modifications a, Modifications b)
         {
             ModificationResult result = new ModificationResult();
-            foreach (KeyValuePair<int,Operation<int,Line>> operation in a.textKeyOperations)
+            
+            // Add all the A operations, provided they're not in B, or equal.
+            // Remove all B operations with identical key.
+            foreach (KeyValuePair<int, Operation<int, Line>> pair in a.textKeyOperations)
             {
-                if (b.textKeyOperations.TryGetValue(operation.Key, out Operation<int, Line> op2))
+                var key = pair.Key;
+                var opA = pair.Value;
+                var valid = true;
+                if (b.textKeyOperations.TryGetValue(key, out Operation<int, Line> opB))
                 {
-                    result.m_invalidOperations.Add(new Tuple<Operation, Operation>(operation.Value, op2));
+                    valid = opB.Equals(opA); 
+                }
+
+                if (valid)
+                {
+                    result.textKeyOperations.Add(opA);
                 }
                 else
                 {
-                    result.textKeyOperations.Add(operation.Value);
+                    result.m_invalidOperations.Add(new Tuple<Operation, Operation>(opA, opB));
                 }
+                
+                b.textKeyOperations.Remove(key);
             }
-            foreach (KeyValuePair<int,Operation<int,Line>> operation in a.versionOperations)
+
+            foreach (KeyValuePair<int, Operation<int, Line>> pair in a.versionOperations)
             {
-                if (b.versionOperations.TryGetValue(operation.Key, out Operation<int, Line> op2))
+                var key = pair.Key;
+                var opA = pair.Value;
+                var valid = true;
+                if (b.versionOperations.TryGetValue(key, out Operation<int, Line> opB))
                 {
-                    result.m_invalidOperations.Add(new Tuple<Operation, Operation>(operation.Value, op2));
+                    valid = opB.Equals(opA); 
+                }
+
+                if (valid)
+                {
+                    result.versionOperations.Add(opA);
                 }
                 else
                 {
-                    result.versionOperations.Add(operation.Value);
+                    result.m_invalidOperations.Add(new Tuple<Operation, Operation>(opA, opB));
                 }
+                
+                b.versionOperations.Remove(key);
             }
-            foreach (KeyValuePair<int,Operation<int,Line>> operation in b.textKeyOperations)
+
+            // Add the remaining B operations
+            foreach (KeyValuePair<int, Operation<int, Line>> operation in b.textKeyOperations)
             {
-                if (!a.textKeyOperations.TryGetValue(operation.Key, out Operation<int, Line> op2))
-                {
-                    result.textKeyOperations.Add(operation.Value);
-                }
+                result.textKeyOperations.Add(operation.Value);
             }
-            foreach (KeyValuePair<int,Operation<int,Line>> operation in b.versionOperations)
+
+            foreach (KeyValuePair<int, Operation<int, Line>> operation in b.versionOperations)
             {
-                if (!a.versionOperations.TryGetValue(operation.Key, out Operation<int, Line> op2))
-                {
-                    result.versionOperations.Add(operation.Value);
-                }
+                result.versionOperations.Add(operation.Value);
             }
 
             return result;
         }
-        
+
         public Modifications GenerateDiffs(Data source, Data modif)
         {
             Modifications modifications = new Modifications();
-            foreach (KeyValuePair<int,Line> pair in source.textKeyDictionary)
+            foreach (KeyValuePair<int, Line> pair in source.textKeyDictionary)
             {
                 if (modif.textKeyDictionary.TryGetValue(pair.Key, out Line value))
                 {
                     if (!string.Equals(value.ScalarValue, pair.Value.ScalarValue))
                     {
-                        modifications.textKeyOperations.Add(pair.Key, new Operation<int, Line>(pair.Key, value, OperationType.MODIFICATION));
+                        modifications.textKeyOperations.Add(pair.Key,
+                            new Operation<int, Line>(pair.Key, value, OperationType.MODIFICATION));
                     }
                 }
                 else
                 {
-                    modifications.textKeyOperations.Add(pair.Key, new Operation<int, Line>(pair.Key, null, OperationType.REMOVAL));
+                    modifications.textKeyOperations.Add(pair.Key,
+                        new Operation<int, Line>(pair.Key, null, OperationType.REMOVAL));
                 }
             }
-            foreach (KeyValuePair<int,Line> pair in modif.textKeyDictionary)
+
+            foreach (KeyValuePair<int, Line> pair in modif.textKeyDictionary)
             {
                 if (!source.textKeyDictionary.Contains(pair.Key))
                 {
-                    modifications.textKeyOperations.Add(pair.Key, new Operation<int, Line>(pair.Key, pair.Value, OperationType.ADDITION));
+                    modifications.textKeyOperations.Add(pair.Key,
+                        new Operation<int, Line>(pair.Key, pair.Value, OperationType.ADDITION));
                 }
             }
-            foreach (KeyValuePair<int,Line> pair in source.versionDictionary)
+
+            foreach (KeyValuePair<int, Line> pair in source.versionDictionary)
             {
                 if (modif.versionDictionary.TryGetValue(pair.Key, out Line value))
                 {
                     if (!string.Equals(value.ScalarValue, pair.Value.ScalarValue))
                     {
-                        modifications.versionOperations.Add(pair.Key, new Operation<int, Line>(pair.Key, value, OperationType.MODIFICATION));
+                        modifications.versionOperations.Add(pair.Key,
+                            new Operation<int, Line>(pair.Key, value, OperationType.MODIFICATION));
                     }
                 }
                 else
                 {
-                    modifications.versionOperations.Add(pair.Key, new Operation<int, Line>(pair.Key, null, OperationType.REMOVAL));
+                    modifications.versionOperations.Add(pair.Key,
+                        new Operation<int, Line>(pair.Key, null, OperationType.REMOVAL));
                 }
             }
-            foreach (KeyValuePair<int,Line> pair in modif.versionDictionary)
+
+            foreach (KeyValuePair<int, Line> pair in modif.versionDictionary)
             {
                 if (!source.versionDictionary.Contains(pair.Key))
                 {
-                    modifications.versionOperations.Add(pair.Key, new Operation<int, Line>(pair.Key, pair.Value, OperationType.ADDITION));
+                    modifications.versionOperations.Add(pair.Key,
+                        new Operation<int, Line>(pair.Key, pair.Value, OperationType.ADDITION));
                 }
             }
 
             return modifications;
         }
-        
-        
+
+
         private void WriteDocument(Document document, Data data)
         {
             if (document.HasTextDictionary) WriteTextKeyDictionary(document, data);
             if (document.HasVersionDictionary) WriteVersionDictionary(document, data);
         }
-        
+
         private Data ParseDocument(Document document)
         {
             Data data = new Data();
@@ -323,7 +382,7 @@ namespace TextDataConflictResolver
                 data.versionDictionary.Add(keys[index++], value);
             }
         }
-        
+
         private void WriteVersionDictionary(Document document, Data data)
         {
             List<Line> lines = new List<Line>();
@@ -338,7 +397,7 @@ namespace TextDataConflictResolver
             document.VersionDictionaryKeys = keysBuilder.ToString();
             document.VersionDictionaryValues = lines;
         }
-        
+
         private void ParseTextKeyDictionary(Document document, Data data)
         {
             int[] keys = ParseSerializedIntArray(document.TextDictionaryKeys);
@@ -348,7 +407,7 @@ namespace TextDataConflictResolver
                 data.textKeyDictionary.Add(keys[index++], value);
             }
         }
-        
+
         private void WriteTextKeyDictionary(Document document, Data data)
         {
             List<Line> lines = new List<Line>();
@@ -370,15 +429,16 @@ namespace TextDataConflictResolver
             int[] values = new int[count];
             for (int i = 0; i < count; ++i)
             {
-                string substring = ReverseHexString(serializedIntArray.Substring(i*8, 8));
+                string substring = ReverseHexString(serializedIntArray.Substring(i * 8, 8));
                 values[i] = int.Parse(substring, NumberStyles.HexNumber);
             }
 
             return values;
         }
 
-        
+
         private static StringBuilder stringBuilder = new StringBuilder();
+
         private static string ReverseHexString(string s)
         {
             stringBuilder.Clear();

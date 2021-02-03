@@ -65,5 +65,23 @@ namespace TextDataConflictResolver.SimpleParser
         {
             return ScalarValue;
         }
+
+        protected bool Equals(Line other)
+        {
+            return string.Equals(ScalarValue, other.ScalarValue);
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (ReferenceEquals(null, obj)) return false;
+            if (ReferenceEquals(this, obj)) return true;
+            if (obj.GetType() != this.GetType()) return false;
+            return Equals((Line) obj);
+        }
+
+        public override int GetHashCode()
+        {
+            return (Value != null ? Value.GetHashCode() : 0);
+        }
     }
 }
