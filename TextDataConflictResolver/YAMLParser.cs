@@ -12,18 +12,21 @@ namespace TextDataConflictResolver
     {
         public SortedListDictionary<int, Line> textKeyDictionary = new SortedListDictionary<int, Line>();
         public SortedListDictionary<int, Line> versionDictionary = new SortedListDictionary<int, Line>();
+        public SortedListDictionary<string, (Line, Line)> textCollectionDictionary = new SortedListDictionary<string, (Line, Line)>();
     }
 
     public class Modifications
     {
         public Dictionary<int, Operation<int, Line>> textKeyOperations = new Dictionary<int, Operation<int, Line>>();
         public Dictionary<int, Operation<int, Line>> versionOperations = new Dictionary<int, Operation<int, Line>>();
+        public Dictionary<string, Operation<string, (Line, Line)?>> textCollectionOperations = new Dictionary<string, Operation<string, (Line, Line)?>>();
     }
 
     public class ModificationResult
     {
         public List<Operation<int, Line>> textKeyOperations = new List<Operation<int, Line>>();
         public List<Operation<int, Line>> versionOperations = new List<Operation<int, Line>>();
+        public List<Operation<string, (Line, Line)?>> textCollectionOperations = new List<Operation<string, (Line, Line)?>>();
 
         public List<Tuple<Operation, Operation>> m_invalidOperations = new List<Tuple<Operation, Operation>>();
 
@@ -57,6 +60,24 @@ namespace TextDataConflictResolver
                         break;
                     case OperationType.REMOVAL:
                         data.versionDictionary.Remove(operations.Key);
+                        break;
+                }
+            }
+            
+            foreach (Operation<string, (Line, Line)?> operations in textCollectionOperations)
+            {
+                switch (operations.OperationType)
+                {
+                    case OperationType.ADDITION:
+                        if (operations.Value.HasValue) 
+                            data.textCollectionDictionary.Add(operations.Key, operations.Value.Value);
+                        break;
+                    case OperationType.MODIFICATION:
+                        if (operations.Value.HasValue) 
+                            data.textCollectionDictionary[operations.Key] = operations.Value.Value;
+                        break;
+                    case OperationType.REMOVAL:
+                        data.textCollectionDictionary.Remove(operations.Key);
                         break;
                 }
             }
@@ -150,7 +171,7 @@ namespace TextDataConflictResolver
 
     public class YAMLParser
     {
-        public bool Parse(string pathSource, string pathA, string pathB, string destinationPath)
+        public bool Parse(string pathSource, string pathA, string pathB, string pathMerged, string destinationPath)
         {
             Document yamlSource;
             Data sourceData;
@@ -190,15 +211,19 @@ namespace TextDataConflictResolver
                         {
                             "m_editorInfoDictionary",
                         };
+                        string[] textCollectionNames =
+                        {
+                            "m_textCollectionDictionary",
+                        };
 
-                        yamlSource = new Document(textNames, versionsNames);
+                        yamlSource = new Document(textNames, versionsNames, textCollectionNames);
                         yamlSource.Parse(streamReader);
                         sourceData = ParseDocument(yamlSource);
 
-                        Document yamlSourceA = new Document(textNames, versionsNames);
+                        Document yamlSourceA = new Document(textNames, versionsNames, textCollectionNames);
                         yamlSourceA.Parse(streamReaderA);
                         Data aData = ParseDocument(yamlSourceA);
-                        Document yamlSourceB = new Document(textNames, versionsNames);
+                        Document yamlSourceB = new Document(textNames, versionsNames, textCollectionNames);
                         yamlSourceB.Parse(streamReaderB);
                         Data bData = ParseDocument(yamlSourceB);
 
@@ -213,9 +238,9 @@ namespace TextDataConflictResolver
                 }
             }
 
-            File.Delete(pathA);
+            File.Delete(pathMerged);
 
-            using (FileStream fs2 = File.Open(pathA, FileMode.OpenOrCreate, FileAccess.Write,
+            using (FileStream fs2 = File.Open(pathMerged, FileMode.OpenOrCreate, FileAccess.Write,
                 FileShare.None))
             {
                 bool success = true;
@@ -285,6 +310,28 @@ namespace TextDataConflictResolver
                 b.versionOperations.Remove(key);
             }
 
+            foreach (KeyValuePair<string, Operation<string, (Line, Line)?>> pair in a.textCollectionOperations)
+            {
+                var key = pair.Key;
+                var opA = pair.Value;
+                var valid = true;
+                if (b.textCollectionOperations.TryGetValue(key, out Operation<string, (Line, Line)?> opB))
+                {
+                    valid = opB.Equals(opA); 
+                }
+
+                if (valid)
+                {
+                    result.textCollectionOperations.Add(opA);
+                }
+                else
+                {
+                    result.m_invalidOperations.Add(new Tuple<Operation, Operation>(opA, opB));
+                }
+                
+                b.textCollectionOperations.Remove(key);
+            }
+
             // Add the remaining B operations
             foreach (KeyValuePair<int, Operation<int, Line>> operation in b.textKeyOperations)
             {
@@ -294,6 +341,11 @@ namespace TextDataConflictResolver
             foreach (KeyValuePair<int, Operation<int, Line>> operation in b.versionOperations)
             {
                 result.versionOperations.Add(operation.Value);
+            }
+
+            foreach (KeyValuePair<string, Operation<string, (Line, Line)?>> operation in b.textCollectionOperations)
+            {
+                result.textCollectionOperations.Add(operation.Value);
             }
 
             return result;
@@ -354,6 +406,32 @@ namespace TextDataConflictResolver
                 }
             }
 
+            foreach (KeyValuePair<string, (Line, Line)> pair in source.textCollectionDictionary)
+            {
+                if (modif.textCollectionDictionary.TryGetValue(pair.Key, out (Line, Line) value))
+                {
+                    if (!string.Equals(value.Item2.ScalarValue, pair.Value.Item2.ScalarValue))
+                    {
+                        modifications.textCollectionOperations.Add(pair.Key,
+                            new Operation<string, (Line, Line)?>(pair.Key, value, OperationType.MODIFICATION));
+                    }
+                }
+                else
+                {
+                    modifications.textCollectionOperations.Add(pair.Key,
+                        new Operation<string, (Line, Line)?>(pair.Key, null, OperationType.REMOVAL));
+                }
+            }
+
+            foreach (KeyValuePair<string, (Line, Line)> pair in modif.textCollectionDictionary)
+            {
+                if (!source.textCollectionDictionary.Contains(pair.Key))
+                {
+                    modifications.textCollectionOperations.Add(pair.Key,
+                        new Operation<string, (Line, Line)?>(pair.Key, pair.Value, OperationType.ADDITION));
+                }
+            }
+
             return modifications;
         }
 
@@ -362,6 +440,7 @@ namespace TextDataConflictResolver
         {
             if (document.HasTextDictionary) WriteTextKeyDictionary(document, data);
             if (document.HasVersionDictionary) WriteVersionDictionary(document, data);
+            if (document.HasTextCollectionDictionary) WriteTextCollectionDictionary(document, data);
         }
 
         private Data ParseDocument(Document document)
@@ -369,6 +448,7 @@ namespace TextDataConflictResolver
             Data data = new Data();
             if (document.HasTextDictionary) ParseTextKeyDictionary(document, data);
             if (document.HasVersionDictionary) ParseVersionDictionary(document, data);
+            if (document.HasTextCollectionDictionary) ParseTextCollectionDictionary(document, data);
 
             return data;
         }
@@ -396,6 +476,37 @@ namespace TextDataConflictResolver
 
             document.VersionDictionaryKeys = keysBuilder.ToString();
             document.VersionDictionaryValues = lines;
+        }
+        
+        private void ParseTextCollectionDictionary(Document document, Data data)
+        {
+            var keys = document.TextCollectionDictionaryKeys;
+            var values = document.TextCollectionDictionaryValues;
+            if (keys.Count != values.Count)
+            {
+                throw new InvalidOperationException("The number of keys doesn't match the number of values");
+            }
+
+            for (int i = 0, size = keys.Count; i < size; ++i)
+            {
+                data.textCollectionDictionary.Add(keys[i].ScalarValue, (keys[i], values[i]));
+            }
+        }
+        
+        private void WriteTextCollectionDictionary(Document document, Data data)
+        {
+            List<Line> keys = new List<Line>();
+            List<Line> values = new List<Line>();
+
+            foreach (KeyValuePair<string, (Line, Line)> pair in data.textCollectionDictionary)
+            {
+                var (key, value) = pair.Value;
+                keys.Add(key);
+                values.Add(value);
+            }
+
+            document.TextCollectionDictionaryKeys = keys;
+            document.TextCollectionDictionaryValues = values;
         }
 
         private void ParseTextKeyDictionary(Document document, Data data)

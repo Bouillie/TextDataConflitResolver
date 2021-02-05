@@ -14,6 +14,8 @@ namespace TextDataConflictResolver
         public string Remote { get; set; }
         [Value(3, MetaName = "DestinationPath", Required = false, HelpText = "Destination path.")]
         public string DestinationPath { get; set; }
+        [Option('o', Required = false, HelpText = "Output file path. If absent, Local will be overwritten.")]
+        public string OutputPath { get; set; }
     }
     
     internal class Program
@@ -30,8 +32,10 @@ namespace TextDataConflictResolver
                     string destinationPath = o.DestinationPath == null
                         ? null
                         : currentDirectory + Path.DirectorySeparatorChar + o.DestinationPath;
+
+                    string outputPath = o.OutputPath ?? o.Local;
                     
-                        bool success = yamlParser.Parse(o.Base, o.Local, o.Remote, destinationPath);
+                    bool success = yamlParser.Parse(o.Base, o.Local, o.Remote, outputPath, destinationPath);
 
                     if (success)
                         Console.WriteLine("Merge successful.");
