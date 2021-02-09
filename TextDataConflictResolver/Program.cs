@@ -16,6 +16,9 @@ namespace TextDataConflictResolver
         public string DestinationPath { get; set; }
         [Option('o', Required = false, HelpText = "Output file path. If absent, Local will be overwritten.")]
         public string OutputPath { get; set; }
+        [Option('b', Default = false, Required = false, HelpText = "Create backup files.")]
+        public bool CreateBackup { get; set; }
+
     }
     
     internal class Program
@@ -34,8 +37,9 @@ namespace TextDataConflictResolver
                         : currentDirectory + Path.DirectorySeparatorChar + o.DestinationPath;
 
                     string outputPath = o.OutputPath ?? o.Local;
+                    bool createBackup = o.CreateBackup;
                     
-                    bool success = yamlParser.Parse(o.Base, o.Local, o.Remote, outputPath, destinationPath);
+                    bool success = yamlParser.Parse(o.Base, o.Local, o.Remote, outputPath, destinationPath, createBackup);
 
                     if (success)
                         Console.WriteLine("Merge successful.");

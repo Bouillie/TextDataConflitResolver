@@ -12,21 +12,27 @@ namespace TextDataConflictResolver
     {
         public SortedListDictionary<int, Line> textKeyDictionary = new SortedListDictionary<int, Line>();
         public SortedListDictionary<int, Line> versionDictionary = new SortedListDictionary<int, Line>();
-        public SortedListDictionary<string, (Line, Line)> textCollectionDictionary = new SortedListDictionary<string, (Line, Line)>();
+
+        public SortedListDictionary<string, (Line, Line)> textCollectionDictionary =
+            new SortedListDictionary<string, (Line, Line)>();
     }
 
     public class Modifications
     {
         public Dictionary<int, Operation<int, Line>> textKeyOperations = new Dictionary<int, Operation<int, Line>>();
         public Dictionary<int, Operation<int, Line>> versionOperations = new Dictionary<int, Operation<int, Line>>();
-        public Dictionary<string, Operation<string, (Line, Line)?>> textCollectionOperations = new Dictionary<string, Operation<string, (Line, Line)?>>();
+
+        public Dictionary<string, Operation<string, (Line, Line)?>> textCollectionOperations =
+            new Dictionary<string, Operation<string, (Line, Line)?>>();
     }
 
     public class ModificationResult
     {
         public List<Operation<int, Line>> textKeyOperations = new List<Operation<int, Line>>();
         public List<Operation<int, Line>> versionOperations = new List<Operation<int, Line>>();
-        public List<Operation<string, (Line, Line)?>> textCollectionOperations = new List<Operation<string, (Line, Line)?>>();
+
+        public List<Operation<string, (Line, Line)?>> textCollectionOperations =
+            new List<Operation<string, (Line, Line)?>>();
 
         public List<Tuple<Operation, Operation>> m_invalidOperations = new List<Tuple<Operation, Operation>>();
 
@@ -63,17 +69,17 @@ namespace TextDataConflictResolver
                         break;
                 }
             }
-            
+
             foreach (Operation<string, (Line, Line)?> operations in textCollectionOperations)
             {
                 switch (operations.OperationType)
                 {
                     case OperationType.ADDITION:
-                        if (operations.Value.HasValue) 
+                        if (operations.Value.HasValue)
                             data.textCollectionDictionary.Add(operations.Key, operations.Value.Value);
                         break;
                     case OperationType.MODIFICATION:
-                        if (operations.Value.HasValue) 
+                        if (operations.Value.HasValue)
                             data.textCollectionDictionary[operations.Key] = operations.Value.Value;
                         break;
                     case OperationType.REMOVAL:
@@ -105,11 +111,18 @@ namespace TextDataConflictResolver
             }
 
             StringBuilder result = new StringBuilder();
-            result.AppendLine("<<<<<<< HEAD");
+            result.AppendLine("Conflict summary");
+            result.AppendLine("================");
+            result.AppendLine("");
+            result.AppendLine("A");
+            result.AppendLine(">>>>>>>");
             result.AppendLine(a.ToString());
-            result.AppendLine("=======");
+            result.AppendLine(">>>>>>>");
+            result.AppendLine("");
+            result.AppendLine("B");
+            result.AppendLine("<<<<<<<");
             result.AppendLine(b.ToString());
-            result.AppendLine(">>>>>>> ");
+            result.AppendLine("<<<<<<<");
             return result.ToString();
         }
     }
@@ -171,11 +184,14 @@ namespace TextDataConflictResolver
 
     public class YAMLParser
     {
-        public bool Parse(string pathSource, string pathA, string pathB, string pathMerged, string destinationPath)
+        public bool Parse(string pathSource, string pathA, string pathB, string pathMerged, string destinationPath,
+            bool createBackup)
         {
             Document yamlSource;
             Data sourceData;
             ModificationResult modificationResult;
+
+            string diagnosticFilePath = null;
 
             if (destinationPath != null)
             {
@@ -183,13 +199,17 @@ namespace TextDataConflictResolver
 
                 string guid = Guid.NewGuid().ToString();
 
-                string pathABackup = Path.Combine(directoryName, $"{guid}_LOCAL");
-                string pathBBackup = Path.Combine(directoryName, $"{guid}_REMOTE");
-                string pathSourceBackup = Path.Combine(directoryName, $"{guid}_BASE");
+                diagnosticFilePath = Path.Combine(directoryName, $"CONFLICTS_SUMMARY_{guid}");
 
-                File.Copy(pathA, pathABackup, true);
-                File.Copy(pathB, pathBBackup, true);
-                File.Copy(pathSource, pathSourceBackup, true);
+                if (createBackup)
+                {
+                    string pathABackup = Path.Combine(directoryName, $"{guid}_LOCAL");
+                    string pathBBackup = Path.Combine(directoryName, $"{guid}_REMOTE");
+                    string pathSourceBackup = Path.Combine(directoryName, $"{guid}_BASE");
+                    File.Copy(pathA, pathABackup, true);
+                    File.Copy(pathB, pathBBackup, true);
+                    File.Copy(pathSource, pathSourceBackup, true);
+                }
             }
 
             using (FileStream fs = File.Open(pathSource, FileMode.Open, FileAccess.Read, FileShare.Read))
@@ -240,30 +260,45 @@ namespace TextDataConflictResolver
 
             File.Delete(pathMerged);
 
+            string errors = modificationResult.Errors();
+            
             using (FileStream fs2 = File.Open(pathMerged, FileMode.OpenOrCreate, FileAccess.Write,
                 FileShare.None))
             {
-                bool success = true;
                 StreamWriter output = new StreamWriter(fs2, new UTF8Encoding(false)) {NewLine = "\n"};
                 yamlSource.Save(output);
-                string errors = modificationResult.Errors();
-                if (!string.IsNullOrWhiteSpace(errors))
-                {
-                    output.WriteLine(errors);
-                    success = false;
-                }
-
                 output.Flush();
 
-                return success;
+                if (diagnosticFilePath == null)
+                {
+                    if (!string.IsNullOrWhiteSpace(errors))
+                    {
+                        output.WriteLine(errors);
+                    }
+                    output.Flush();
+                    return false;
+                }
             }
+
+            if (!string.IsNullOrWhiteSpace(errors))
+            {
+                using (FileStream fs2 = File.Open(diagnosticFilePath, FileMode.OpenOrCreate, FileAccess.Write,
+                    FileShare.None))
+                {
+                    StreamWriter output = new StreamWriter(fs2, new UTF8Encoding(false)) {NewLine = "\n"};
+                    output.WriteLine(errors);
+                    output.Flush();
+                }
+            }
+
+            return true;
         }
 
 
         public ModificationResult ComputeResults(Modifications a, Modifications b)
         {
             ModificationResult result = new ModificationResult();
-            
+
             // Add all the A operations, provided they're not in B, or equal.
             // Remove all B operations with identical key.
             foreach (KeyValuePair<int, Operation<int, Line>> pair in a.textKeyOperations)
@@ -273,7 +308,7 @@ namespace TextDataConflictResolver
                 var valid = true;
                 if (b.textKeyOperations.TryGetValue(key, out Operation<int, Line> opB))
                 {
-                    valid = opB.Equals(opA); 
+                    valid = opB.Equals(opA);
                 }
 
                 if (valid)
@@ -284,7 +319,7 @@ namespace TextDataConflictResolver
                 {
                     result.m_invalidOperations.Add(new Tuple<Operation, Operation>(opA, opB));
                 }
-                
+
                 b.textKeyOperations.Remove(key);
             }
 
@@ -295,7 +330,7 @@ namespace TextDataConflictResolver
                 var valid = true;
                 if (b.versionOperations.TryGetValue(key, out Operation<int, Line> opB))
                 {
-                    valid = opB.Equals(opA); 
+                    valid = opB.Equals(opA);
                 }
 
                 if (valid)
@@ -306,7 +341,7 @@ namespace TextDataConflictResolver
                 {
                     result.m_invalidOperations.Add(new Tuple<Operation, Operation>(opA, opB));
                 }
-                
+
                 b.versionOperations.Remove(key);
             }
 
@@ -317,7 +352,7 @@ namespace TextDataConflictResolver
                 var valid = true;
                 if (b.textCollectionOperations.TryGetValue(key, out Operation<string, (Line, Line)?> opB))
                 {
-                    valid = opB.Equals(opA); 
+                    valid = opB.Equals(opA);
                 }
 
                 if (valid)
@@ -328,7 +363,7 @@ namespace TextDataConflictResolver
                 {
                     result.m_invalidOperations.Add(new Tuple<Operation, Operation>(opA, opB));
                 }
-                
+
                 b.textCollectionOperations.Remove(key);
             }
 
@@ -477,7 +512,7 @@ namespace TextDataConflictResolver
             document.VersionDictionaryKeys = keysBuilder.ToString();
             document.VersionDictionaryValues = lines;
         }
-        
+
         private void ParseTextCollectionDictionary(Document document, Data data)
         {
             var keys = document.TextCollectionDictionaryKeys;
@@ -492,7 +527,7 @@ namespace TextDataConflictResolver
                 data.textCollectionDictionary.Add(keys[i].ScalarValue, (keys[i], values[i]));
             }
         }
-        
+
         private void WriteTextCollectionDictionary(Document document, Data data)
         {
             List<Line> keys = new List<Line>();
