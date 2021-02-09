@@ -89,7 +89,12 @@ namespace TextDataConflictResolver
             }
         }
 
-        public string Errors()
+        public bool HasErrors()
+        {
+            return m_invalidOperations.Count != 0;
+        }
+        
+        public string ConflictErrors()
         {
             if (m_invalidOperations.Count == 0)
                 return string.Empty;
@@ -111,6 +116,36 @@ namespace TextDataConflictResolver
             }
 
             StringBuilder result = new StringBuilder();
+            result.AppendLine("<<<<<<< HEAD");
+            result.AppendLine(a.ToString());
+            result.AppendLine("=======");
+            result.AppendLine(b.ToString());
+            result.AppendLine(">>>>>>> ");
+            return result.ToString();
+        }
+
+        public string HumanErrors()
+        {
+            if (m_invalidOperations.Count == 0)
+                return string.Empty;
+
+            StringBuilder a = new StringBuilder();
+            StringBuilder b = new StringBuilder();
+
+            for (int index = 0; index < m_invalidOperations.Count; index++)
+            {
+                if (index != 0)
+                {
+                    a.Append("\n");
+                    b.Append("\n");
+                }
+
+                Tuple<Operation, Operation> pair = m_invalidOperations[index];
+                a.Append(pair.Item1);
+                b.Append(pair.Item2);
+            }
+            
+            StringBuilder result = new StringBuilder();
             result.AppendLine("Conflict summary");
             result.AppendLine("================");
             result.AppendLine("");
@@ -125,6 +160,9 @@ namespace TextDataConflictResolver
             result.AppendLine("<<<<<<<");
             return result.ToString();
         }
+
+
+
     }
 
     public enum OperationType
@@ -260,7 +298,6 @@ namespace TextDataConflictResolver
 
             File.Delete(pathMerged);
 
-            string errors = modificationResult.Errors();
             
             using (FileStream fs2 = File.Open(pathMerged, FileMode.OpenOrCreate, FileAccess.Write,
                 FileShare.None))
@@ -268,9 +305,10 @@ namespace TextDataConflictResolver
                 StreamWriter output = new StreamWriter(fs2, new UTF8Encoding(false)) {NewLine = "\n"};
                 yamlSource.Save(output);
                 output.Flush();
-
-                if (diagnosticFilePath == null)
+                        
+                if (diagnosticFilePath == null && modificationResult.HasErrors())
                 {
+                    string errors = modificationResult.ConflictErrors();
                     if (!string.IsNullOrWhiteSpace(errors))
                     {
                         output.WriteLine(errors);
@@ -280,14 +318,18 @@ namespace TextDataConflictResolver
                 }
             }
 
-            if (!string.IsNullOrWhiteSpace(errors))
+            if (diagnosticFilePath != null && modificationResult.HasErrors())
             {
-                using (FileStream fs2 = File.Open(diagnosticFilePath, FileMode.OpenOrCreate, FileAccess.Write,
-                    FileShare.None))
+                string errors = modificationResult.HumanErrors();
+                if (!string.IsNullOrWhiteSpace(errors))
                 {
-                    StreamWriter output = new StreamWriter(fs2, new UTF8Encoding(false)) {NewLine = "\n"};
-                    output.WriteLine(errors);
-                    output.Flush();
+                    using (FileStream fs2 = File.Open(diagnosticFilePath, FileMode.OpenOrCreate, FileAccess.Write,
+                        FileShare.None))
+                    {
+                        StreamWriter output = new StreamWriter(fs2, new UTF8Encoding(false)) {NewLine = "\n"};
+                        output.WriteLine(errors);
+                        output.Flush();
+                    }
                 }
             }
 
