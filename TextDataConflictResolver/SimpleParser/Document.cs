@@ -11,6 +11,7 @@ namespace TextDataConflictResolver.SimpleParser
         ParsingTextValues,
         ParsingVersionKeys,
         ParsingVersionValuesVersion,
+        ParsingVersionValuesWip,
         ParsingVersionValuesComment,
         ParsingTextCollectionKeys,
         ParsingTextCollectionValues,
@@ -334,9 +335,17 @@ namespace TextDataConflictResolver.SimpleParser
 
                     if (!isInEscape)
                     {
-                        state = State.ParsingVersionValuesVersion;
+                        state = State.ParsingVersionValuesWip;
                     }
 
+                    line = reader.ReadLine();
+                }
+                else if (state == State.ParsingVersionValuesWip)
+                {
+                    List<Line> lines = currentBlock.Lines;
+                    Line l = lines[lines.Count - 1];
+                    l.AppendValue(line);
+                    state = State.ParsingVersionValuesVersion;
                     line = reader.ReadLine();
                 }
             }
